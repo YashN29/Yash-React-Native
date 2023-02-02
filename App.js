@@ -6,7 +6,7 @@ import Feb2 from './src/Feb2';
 const App =() => {
 
     return (
-        <View>
+        <View style ={{flex:0.4}}>
             {<Feb2/>}
         </View>
     );

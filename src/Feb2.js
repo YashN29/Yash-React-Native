@@ -1,95 +1,88 @@
+import { wrap } from "lodash";
 import React from "react";
 import {
-     ActivityIndicator, 
      View, 
      StyleSheet, 
      Text, 
-     Button, 
+     Button,
+     SafeAreaView,
+     Image, 
      Alert,
-    SafeAreaView } from "react-native";
+     ActivityIndicator} from "react-native";
 
-const Separator =()=><View />
-
-const Feb2 =()=>{
-
+const Feb2 =()=>
+{
     return(
-        <SafeAreaView style={styles.safeareaview}>
+        <View style={styles.safeAreaview}>
+
+            <View style={styles.view_top}>
+
+                    <View>
+
+                    <Text style={styles.text1}>Welcome to,{'\n'}Creole studios!</Text>
+                    </View>
+
+                    <View>
+                        <Image style={styles.logo}
+                        source={require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/logo.png')}
+                        />
+                    </View>
+            </View>
             
-                <View >
-                    {/* <ActivityIndicator style={styles.activityIndicator}/> */}
-                    <Text style={styles.text1}>Welcome to,</Text>
-                    <Text style={styles.text2}>Creole studios!</Text>
-                    
-                </View>
+            <View style={styles.view_bottom}>
 
-                <Separator style={styles.separator} />
+                <ActivityIndicator color="yellow" size="large"/>
+                <Button style={styles.button}
+                onPress={()=> Alert.alert('You have clicked the Button!')}
+                title="Submit"/>
 
-                <View style={styles.buttonseparate}>
+            </View>
 
-                    {/* <Button
-                    title="Button 1"
-                    color='#069CEE'
-                    //onPress={()=> Alert.alert('You have clicked button 1') }
-                    /> */}
-                    <Button 
-                    title="Button 2"
-                    color='#069CEE'
-                    //onPress={()=> Alert.alert('You have Clicked button 2')}
-                    />
-
-                </View>
-    
-    </SafeAreaView>
-        
-        
-        
+        </View>      
     );
 };
 
  
  const styles = StyleSheet.create({
 
-    safeareaview: {
+    safeAreaview: {
+        flex: 1,
+        backgroundColor:'white'
+    },
+    view_bottom: {
+        marginTop: 40,
+        padding:20,
+       //backgroundColor:'white',
+        
+    },
+    button: {
+        borderRadius:100,
+        elevation:10,
+        alignSelf:'flex-end',
+        color:'#069CEE',
+    },
+    view_top: {
+        flexDirection:'row',
         backgroundColor: '#069cee',
-        justifyContent: 'center',
-        //marginHorizontal: 5,
-        borderBottomLeftRadius: 80,
-        //marginVertical: 20
-    },
-
-    // activityIndicator: {
-    //      size:'large' ,
-    //     color:'green'
-    // },
-    
-    buttonseparate: {
-        marginTop: 100,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: 50
-    },
-    separator: {
-        marginVertical: 20,
-        borderBottomWidth: StyleSheet.hairlineWidth
+        height: 200,
+        justifyContent:'flex-start', 
+        borderBottomLeftRadius: 40,
+        borderBottomRightRadius: 40
     },
     text1:{
-        justifyContent: 'center',
-        alignContent: 'center',
-        marginTop: 15,
-        marginLeft: 15,
+        margin : 18,
         fontWeight: 'bold',
         color: 'white',
-        fontSize: 25
+        alignSelf:'flex-start',
+        fontSize: 30
     },
-    text2:{
-        justifyContent: 'center',
-        alignContent: 'center',
+    logo:{
+        width: 150,
+        height: 150,
         marginLeft: 15,
-        fontWeight: 'bold',
-        color: 'white',
-        fontSize: 25
+        marginTop: 10,
+        alignSelf: 'flex-end'
     }
- },
- );
+});
 
 export default Feb2;
