@@ -1,13 +1,14 @@
 import React from 'react';
-import {View,Text} from 'react-native';
-import Feb1 from './src/Feb1';
-import Feb2 from './src/Feb2';
+import {View} from 'react-native';
+
+//import Feb2 from './src/Feb2';
+import Feb3 from './src/Feb3';
 
 const App =() => {
 
     return (
-        <View style ={{flex:0.4}}>
-            {<Feb2/>}
+        <View style ={{flex:1}}>
+            {<Feb3/>}
         </View>
     );
 };

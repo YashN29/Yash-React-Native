@@ -17,10 +17,10 @@ const Feb2 =()=>
 
             <View style={styles.view_top}>
 
-                    <View>
+                    {/* <View> */}
 
                     <Text style={styles.text1}>Welcome to,{'\n'}Creole studios!</Text>
-                    </View>
+                    {/* </View> */}
 
                     <View>
                         <Image style={styles.logo}
@@ -51,7 +51,7 @@ const Feb2 =()=>
     },
     view_bottom: {
         marginTop: 40,
-        padding:20,
+        alignItems:'center',
        //backgroundColor:'white',
         
     },
