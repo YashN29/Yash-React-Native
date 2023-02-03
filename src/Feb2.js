@@ -6,6 +6,7 @@ import {
      Text, 
      Button,
      SafeAreaView,
+     TouchableOpacity,
      Image, 
      Alert,
      ActivityIndicator} from "react-native";
@@ -22,10 +23,24 @@ const Feb2 =()=>
                     <Text style={styles.text1}>Welcome to,{'\n'}Creole studios!</Text>
                     {/* </View> */}
 
-                    <View>
-                        <Image style={styles.logo}
-                        source={require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/logo.png')}
-                        />
+                    <View accessible={true}>
+                    <TouchableOpacity>
+                        
+                        <Image 
+                        // style={styles.logo}
+                        //     //tintColor="blue"
+                        //     fadeDuration={5000}
+                        //     accessibilityLabel="Hii"
+                        //     alt="Hiii"
+                        //     //blurRadius={5}
+                        //     source={require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/logo.png')}
+                            
+                            
+                            />
+                            
+                    </TouchableOpacity>
+                            
+                        
                     </View>
             </View>
             
@@ -80,6 +95,7 @@ const Feb2 =()=>
         width: 150,
         height: 150,
         marginLeft: 15,
+        borderColor:'red',
         marginTop: 10,
         alignSelf: 'flex-end'
     }

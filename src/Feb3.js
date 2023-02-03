@@ -2,16 +2,26 @@ import React from "react";
 import {Button, View, StyleSheet, Text, FlatList, StatusBar} from "react-native";
 
 const DATA =[
-    {title:"First Item"},
-    {title:"Second Item"},
-    {title:"Third Item"},
-    {title:"Fourth Item"},
-    {title:"Fifth Item"},
-    {title:"Sixth Item"},
-    {title:"Seventh Item"},
-    {title:"Eighth Item"},
-    {title:"Ninth Item"},
-    {title:"Tenth Item"}
+    {title:"1 Creolestudios"},
+    {title:"2 Creolestudios"},
+    {title:"3 Creolestudios"},
+    {title:"4 Creolestudios"},
+    {title:"5 Creolestudios"},
+    {title:"6 Creolestudios"},
+    {title:"7 Creolestudios"},
+    {title:"8 Creolestudios"},
+    {title:"9 Creolestudios"},
+    {title:"10 Creolestudios"},
+    {title:"11 Creolestudios"},
+    {title:"12 Creolestudios"},
+    {title:"13 Creolestudios"},
+    {title:"14 Creolestudios"},
+    {title:"15 Creolestudios"},
+    {title:"16 Creolestudios"},
+    {title:"17 Creolestudios"},
+    {title:"18 Creolestudios"},
+    {title:"19 Creolestudios"},
+    {title:"20 Creolestudios"}
 ];
 
 const Item = ({title})=>(
@@ -31,6 +41,12 @@ const Feb3 = ()=>{
         <View style={styles.flatView}>
 
             <FlatList
+                //progressViewOffset={6}
+                //numColumns={2}
+                //horizontal
+                //inverted
+                //initialNumToRender={2}
+                initialScrollIndex={5}
                 data={DATA}
                 renderItem={({item}) => <Item title={item.title} />}
             />
@@ -82,7 +98,8 @@ const styles = StyleSheet.create({
             padding: 20,
             height:70,
             marginVertical: 8,
-            marginHorizontal:16
+            marginHorizontal:16,
+            borderWidth: 3
         }
 
         // mainView:{
