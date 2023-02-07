@@ -1,15 +1,13 @@
-import React from 'react';
+import React from "react";
 import {View} from 'react-native';
-
-//import Feb2 from './src/Feb2';
-//import Feb3 from './src/Feb3';
-import Feb6 from './src/Feb6';
+import Feb7 from "./src/Feb7/Feb7";
+import Dashboard_UI from "./src/Feb7/Dashboard_UI";
 
 const App =() => {
 
     return (
         <View style ={{flex:1}}>
-            {<Feb6/>}
+            {<Dashboard_UI/>}
         </View>
     );
 };

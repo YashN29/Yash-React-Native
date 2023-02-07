@@ -1,0 +1,133 @@
+import React from "react";
+import { StyleSheet } from "react-native";
+
+const custom_style = StyleSheet.create({
+
+    mainContainer:{
+        flex:1,
+        flexDirection:'column',
+        backgroundColor:'white'
+    },
+    Register:{
+        width:260,
+        height:77,
+        marginTop:34,
+        marginLeft:20,
+        fontStyle:'normal',
+        alignItems:'center',
+        fontWeight:'bold',
+        fontSize:55,
+        color:'#545974'
+    },
+    text2:{
+        width:250,
+        height:18,
+        fontSize:14,
+        marginLeft:20,
+        fontStyle:'normal',
+        alignItems:'center',
+        color:'#BABABA'
+    },
+    name:{
+        marginLeft:30,
+        height:10,
+        fontSize:10,
+        color:'#545974',
+        lineHeight:12,
+        marginTop:70,
+        fontStyle:'normal',
+        fontWeight:'bold'
+    },
+    top_logo:{
+        marginLeft:21,
+        marginTop:57,
+        background:'#FF6464'
+    },
+    Input_name:{
+        alignSelf:'center',
+        width:335,
+        height:50,
+        borderWidth:2,
+        marginTop:5,
+        paddingLeft:15,
+        color:'#545974',
+        borderColor:'#F1F1F1',
+        borderRadius:10,
+    },
+    email:{
+        marginLeft:30,
+        height:10,
+        fontSize:10,
+        color:'#545974',
+        lineHeight:12,
+        marginTop:25,
+        fontStyle:'normal',
+        fontWeight:'bold'
+    },
+    Input_email:{
+        alignSelf:'center',
+        width:335,
+        height:50,
+        color:'#545974',
+        borderWidth:2,
+        marginTop:5,
+        paddingLeft:15,
+        borderColor:'#F1F1F1',
+        borderRadius:10,
+    },
+    password:{
+        marginLeft:30,
+        height:10,
+        fontSize:10,
+        color:'#545974',
+        lineHeight:12,
+        marginTop:25,
+        fontStyle:'normal',
+        fontWeight:'bold'
+    },
+    Input_password:{
+        alignSelf:'center',
+        width:335,
+        height:50,
+        color:'#545974',
+        borderWidth:2,
+        marginTop:5,
+        paddingLeft:15,
+        borderColor:'#F1F1F1',
+        borderRadius:10,
+    },
+    btn_view:{
+        justifyContent:'center',
+        width:335,
+        height:50,
+        alignSelf:'center',
+        marginTop:30,
+        flexDirection:'column'
+    },
+    button: {
+        alignItems: 'center',
+        backgroundColor:'#FF6464',
+        borderRadius:10,
+        elevation:6,
+        padding: 10,
+      },
+    text_inside_btn:{
+        color:'white',
+        fontWeight:'bold'
+    },
+    text_bottom:{
+        color:'#545974',
+        alignSelf:'center',
+        width:170,
+        marginTop:20
+    },
+    text_login:{
+        alignSelf:'center',
+        fontWeight:'bold',
+        marginTop:5,
+        color:'#FF6464'
+    }
+    
+})
+
+export default custom_style;
