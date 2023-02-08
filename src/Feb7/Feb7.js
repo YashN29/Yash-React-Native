@@ -1,16 +1,16 @@
 import React,{useState} from "react";
-import {View,Text,TextInput,Image, KeyboardAvoidingView, TouchableHighlight, TouchableOpacity} from 'react-native';
+import {View,Text,TextInput,Image, TouchableHighlight, TouchableOpacity} from 'react-native';
 import custom_style from "./custom_style";
+import { useTogglePasswordVisibility } from "./useTogglePasswordVisibility";
 
-    
 
-const Feb7 =()=>{
+const Feb7=()=>{
+     const [count, setCount] = useState(0);
+     const onpress = () => setCount(null)
 
-    const [count, setCount] = useState(0);
-    const onPress = () => setCount(null);
 
-    const [state, setstate] = useState(0)
-    const passShow = () => setstate(null)
+     const { passwordVisibility, handlePasswordVisibility } = useTogglePasswordVisibility();
+     const [password, setPassword] = useState('')
 
     return(
         <View style={custom_style.mainContainer}>
@@ -42,15 +42,18 @@ const Feb7 =()=>{
 
                 <View style={custom_style.passInputView}>
 
-                <TextInput
+                <TextInput  name="password"
+                            autoCorrect={false}
                             style={custom_style.Input_password}
                             placeholder="* * * * * * *"
                             placeholderTextColor='#545974'
                             selectionColor='#545974'
-                            secureTextEntry={true}
+                            secureTextEntry={passwordVisibility}
+                            value={password}
+                            onChangeText={text => setPassword(text)}
                             />
                     
-                    <TouchableOpacity onPress={passShow} 
+                    <TouchableOpacity onPress={handlePasswordVisibility} 
                     style={custom_style.eyeImage}>
                             <Image resizeMode="contain" style={{height:24,width:24}} source={require('../../icons/vector.png')}/>
                                      
@@ -60,7 +63,7 @@ const Feb7 =()=>{
 
                 <View style={custom_style.btn_view}>
                     
-                    <TouchableHighlight style={{borderRadius:10}} onPress={onPress}>
+                    <TouchableHighlight style={{borderRadius:10}} onPress={onpress}>
 
                     <View style={custom_style.button}>
                         <Text style={custom_style.text_inside_btn}>REGISTER</Text>
