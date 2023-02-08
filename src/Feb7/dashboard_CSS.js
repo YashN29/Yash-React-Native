@@ -68,11 +68,13 @@ const dashboard_CSS = StyleSheet.create({
         borderWidth: 3
     },
     flatlist_view:{
+        flex:1,
         marginTop:10
     },
     item_image:{
         tintColor:'white',
         width:30,
+        resizeMode:'contain',
         height:30,
     },
     flatImageView:{
@@ -81,7 +83,7 @@ const dashboard_CSS = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         borderRadius:10,
-        backgroundColor:'#FF6464'
+        backgroundColor:'#545974'
     },
     
 })

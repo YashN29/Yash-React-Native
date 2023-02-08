@@ -7,7 +7,7 @@ const App =() => {
 
     return (
         <View style ={{flex:1}}>
-            {<Dashboard_UI/>}
+            {<Feb7/>}
         </View>
     );
 };

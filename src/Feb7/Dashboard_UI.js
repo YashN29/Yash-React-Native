@@ -4,17 +4,10 @@ import dashboard_CSS from "./dashboard_CSS";
 
 const DATA = [
     {title:"Facebook",image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/Facebook.png')},
-    {title:"Amazon"},
-    {title:"Apple"},
-    {title:"Netflix"},
+    {title:"Amazon",image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/amazon.png')},
+    {title:"Apple",image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/apple.png')},
+    {title:"Netflix",image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/netflix.png')},
     {title:"Hotstar"},
-    {title:"Flipkart"},
-    {title:"Facebook"},
-    {title:"Amazon"},
-    {title:"Apple"},
-    {title:"Netflix"},
-    {title:"Hotstar"},
-    {title:"Flipkart"}
   ];
 
 const Item = ({item})=>{
@@ -22,7 +15,7 @@ return(<View style={dashboard_CSS.item}>
     <View style={dashboard_CSS.flatImageView}>
           
           <Image style={dashboard_CSS.item_image}
-                source={require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/Facebook.png')}></Image>
+                source={(item.image)}></Image>
 
     </View>
      
@@ -47,7 +40,7 @@ const Dashboard_UI =()=>{
             
             <View style={dashboard_CSS.mid_view}>
 
-                <TouchableHighlight onPress={onPress}>
+                <TouchableHighlight style={{borderRadius:10}} onPress={onPress}>
                     
                     <View style={dashboard_CSS.button}>
                             <Text style={dashboard_CSS.text1_inside_btn}>5</Text>
@@ -58,7 +51,7 @@ const Dashboard_UI =()=>{
 
 
                     
-                <TouchableHighlight onPress={onPress}>
+                <TouchableHighlight style={{borderRadius:10}} onPress={onPress}>
 
                     <View style={dashboard_CSS.button}>
                         <Text style={dashboard_CSS.text1_inside_btn}>0</Text>
@@ -77,6 +70,7 @@ const Dashboard_UI =()=>{
                     placeholderTextColor='#BABABA'
                     style={dashboard_CSS.search}
                     selectionColor='#545974'/>
+                    
 
             <View style={dashboard_CSS.flatlist_view}>
 

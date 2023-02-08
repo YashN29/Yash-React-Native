@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {View,Text,TextInput,Image, KeyboardAvoidingView, TouchableHighlight} from 'react-native';
+import {View,Text,TextInput,Image, KeyboardAvoidingView, TouchableHighlight, TouchableOpacity} from 'react-native';
 import custom_style from "./custom_style";
 
     
@@ -8,6 +8,9 @@ const Feb7 =()=>{
 
     const [count, setCount] = useState(0);
     const onPress = () => setCount(null);
+
+    const [state, setstate] = useState(0)
+    const passShow = () => setstate(null)
 
     return(
         <View style={custom_style.mainContainer}>
@@ -37,22 +40,27 @@ const Feb7 =()=>{
 
                 <Text style={custom_style.password}>PASSWORD</Text>
 
-                <KeyboardAvoidingView behavior={"padding"}>
+                <View style={custom_style.passInputView}>
 
-                <TextInput inlineImageLeft="vector"
-                            inlineImagePadding={2}
+                <TextInput
                             style={custom_style.Input_password}
                             placeholder="* * * * * * *"
                             placeholderTextColor='#545974'
                             selectionColor='#545974'
                             secureTextEntry={true}
                             />
+                    
+                    <TouchableOpacity onPress={passShow} 
+                    style={custom_style.eyeImage}>
+                            <Image resizeMode="contain" style={{height:24,width:24}} source={require('../../icons/vector.png')}/>
+                                     
+                    </TouchableOpacity>
 
-                </KeyboardAvoidingView>
-                
+                </View>
+
                 <View style={custom_style.btn_view}>
                     
-                    <TouchableHighlight onPress={onPress}>
+                    <TouchableHighlight style={{borderRadius:10}} onPress={onPress}>
 
                     <View style={custom_style.button}>
                         <Text style={custom_style.text_inside_btn}>REGISTER</Text>
