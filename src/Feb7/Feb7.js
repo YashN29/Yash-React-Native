@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import {View,Text,TextInput,Image, TouchableHighlight, TouchableOpacity} from 'react-native';
 import custom_style from "./custom_style";
 
-
 const Feb7=()=>{
      const [count, setCount] = useState(0);
      const onpress = () => setCount(null)
