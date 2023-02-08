@@ -1,16 +1,13 @@
 import React,{useState} from "react";
 import {View,Text,TextInput,Image, TouchableHighlight, TouchableOpacity} from 'react-native';
 import custom_style from "./custom_style";
-import { useTogglePasswordVisibility } from "./useTogglePasswordVisibility";
 
 
 const Feb7=()=>{
      const [count, setCount] = useState(0);
      const onpress = () => setCount(null)
 
-
-     const { passwordVisibility, handlePasswordVisibility } = useTogglePasswordVisibility();
-     const [password, setPassword] = useState('')
+     const [visible, setvisible] = useState(true)
 
     return(
         <View style={custom_style.mainContainer}>
@@ -48,12 +45,10 @@ const Feb7=()=>{
                             placeholder="* * * * * * *"
                             placeholderTextColor='#545974'
                             selectionColor='#545974'
-                            secureTextEntry={passwordVisibility}
-                            value={password}
-                            onChangeText={text => setPassword(text)}
+                            secureTextEntry={visible}
                             />
                     
-                    <TouchableOpacity onPress={handlePasswordVisibility} 
+                    <TouchableOpacity onPress={()=>{setvisible(!visible)}} 
                     style={custom_style.eyeImage}>
                             <Image resizeMode="contain" style={{height:24,width:24}} source={require('../../icons/vector.png')}/>
                                      
