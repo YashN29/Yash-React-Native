@@ -39,7 +39,7 @@ const dashboard_CSS = StyleSheet.create({
     },
     search:{
         alignSelf:'center',
-        width:335,
+        width:'95%',
         height:50,
         color:'#545974',
         borderWidth:3,

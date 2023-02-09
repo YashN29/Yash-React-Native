@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {View,Text,TextInput,Image, TouchableHighlight, TouchableOpacity} from 'react-native';
+import {View,Text,TextInput,Image, TouchableHighlight, TouchableOpacity, ScrollView} from 'react-native';
 import custom_style from "./custom_style";
 
 const Feb7=()=>{
@@ -10,8 +10,10 @@ const Feb7=()=>{
 
     return(
         <View style={custom_style.mainContainer}>
-           
-           <View>
+
+            <ScrollView showsVerticalScrollIndicator={false}>
+
+            <View>
                 
                 <Image style={custom_style.top_logo}
                 source={require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/top_vector.png')}></Image>
@@ -68,8 +70,16 @@ const Feb7=()=>{
                 </View>
                 
                     <Text style={custom_style.text_bottom}>Already have an account?</Text>
+                    
+                    <TouchableOpacity>
                     <Text style={custom_style.text_login}>LOGIN</Text>
+                    </TouchableOpacity>
+                    
             </View>
+
+            </ScrollView>
+           
+           
             
         </View>
     )

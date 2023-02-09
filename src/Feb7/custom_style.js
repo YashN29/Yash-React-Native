@@ -45,7 +45,7 @@ const custom_style = StyleSheet.create({
     },
     Input_name:{
         alignSelf:'center',
-        width:335,
+        width:'95%',
         height:50,
         borderWidth:2,
         marginTop:5,
@@ -66,7 +66,7 @@ const custom_style = StyleSheet.create({
     },
     Input_email:{
         alignSelf:'center',
-        width:335,
+        width:'95%',
         height:50,
         color:'#545974',
         borderWidth:2,
@@ -87,7 +87,7 @@ const custom_style = StyleSheet.create({
     },
     btn_view:{
         justifyContent:'center',
-        width:335,
+        width:'95%',
         height:45,
         alignSelf:'center',
         marginTop:30,
@@ -117,13 +117,14 @@ const custom_style = StyleSheet.create({
         alignSelf:'center',
         fontWeight:'bold',
         marginTop:5,
+        textDecorationLine:'underline',
         color:'#FF6464'
     },
     passInputView:{
         flexDirection:'row',
         alignSelf:'center',
         marginHorizontal:20,
-        width:335,
+        width:'95%',
         height:50,
         marginTop:5,
         justifyContent:'center',
@@ -137,7 +138,7 @@ const custom_style = StyleSheet.create({
     },
     Input_password:{
         alignSelf:'center',
-        width:335,
+        width:'98%',
         paddingLeft:50,  
     },
     
