@@ -9,16 +9,18 @@ const dashboard_CSS = StyleSheet.create({
         backgroundColor:'white'
     },
     top_logo:{
-        tintColor:'red',
+        width:30,
+        height:30,
         marginLeft:21,
-        marginTop:57,
+        marginTop:47,
+        resizeMode:'contain',
         background:'#FF6464'
     },
     mid_view:{
         flexDirection:'row',
         justifyContent:'space-between',
         marginHorizontal:20,
-        marginTop:54,
+        marginTop:44,
     },
     button: {
         backgroundColor:'#F1F1F1',

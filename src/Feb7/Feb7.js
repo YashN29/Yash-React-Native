@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {View,Text,TextInput,Image, TouchableHighlight, TouchableOpacity, ScrollView} from 'react-native';
+import {View,Text,TextInput,Image, TouchableHighlight, TouchableOpacity, ScrollView, Pressable} from 'react-native';
 import custom_style from "./custom_style";
 
 const Feb7=()=>{
@@ -15,8 +15,10 @@ const Feb7=()=>{
 
             <View>
                 
-                <Image style={custom_style.top_logo}
-                source={require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/top_vector.png')}></Image>
+                <TouchableOpacity onPress={null}>
+                    <Image style={custom_style.top_logo}
+                    source={require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/top_vector.png')}></Image>
+                </TouchableOpacity>
                 
                 <Text style={custom_style.Register}>REGISTER</Text>
                 

@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {View,Text,Image,TouchableHighlight, TextInput, FlatList} from 'react-native';
+import {View,Text,Image,TouchableHighlight, TextInput, FlatList, TouchableOpacity} from 'react-native';
 import dashboard_CSS from "./dashboard_CSS";
 
 const DATA = [
@@ -34,9 +34,10 @@ const Dashboard_UI =()=>{
 
         <View style={dashboard_CSS.main_view}>
 
-            <Image style={dashboard_CSS.top_logo}
-            source={require('../../icons/top_vector.png')}></Image>
-
+            <TouchableOpacity>
+                <Image style={dashboard_CSS.top_logo}
+                source={require('../../icons/top_vector.png')}></Image>
+            </TouchableOpacity>
             
             <View style={dashboard_CSS.mid_view}>
 
@@ -73,14 +74,13 @@ const Dashboard_UI =()=>{
                     
 
             <View style={dashboard_CSS.flatlist_view}>
-
-
-                <FlatList
+            <FlatList
+            
+                showsVerticalScrollIndicator={false}
                 style={{marginHorizontal:15}}
                 data={DATA}
                 renderItem={Item} 
                 />
-
             </View>
 
         </View>

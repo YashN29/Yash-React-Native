@@ -29,7 +29,7 @@ const custom_style = StyleSheet.create({
         color:'#BABABA'
     },
     name:{
-        marginLeft:30,
+        marginLeft:20,
         height:10,
         fontSize:10,
         color:'#545974',
@@ -39,6 +39,9 @@ const custom_style = StyleSheet.create({
         fontWeight:'bold'
     },
     top_logo:{
+        width:30,
+        height:30,
+        resizeMode:'contain',
         marginLeft:21,
         marginTop:57,
         background:'#FF6464'
@@ -55,7 +58,7 @@ const custom_style = StyleSheet.create({
         borderRadius:10,
     },
     email:{
-        marginLeft:30,
+        marginLeft:20,
         height:10,
         fontSize:10,
         color:'#545974',
@@ -76,7 +79,7 @@ const custom_style = StyleSheet.create({
         borderRadius:10,
     },
     password:{
-        marginLeft:30,
+        marginLeft:20,
         height:10,
         fontSize:10,
         color:'#545974',
