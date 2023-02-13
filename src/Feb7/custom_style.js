@@ -11,7 +11,7 @@ const custom_style = StyleSheet.create({
     Register:{
         width:260,
         height:77,
-        marginTop:34,
+        marginTop:20,
         marginLeft:20,
         fontStyle:'normal',
         alignItems:'center',
@@ -34,7 +34,7 @@ const custom_style = StyleSheet.create({
         fontSize:10,
         color:'#545974',
         lineHeight:12,
-        marginTop:70,
+        marginTop:50,
         fontStyle:'normal',
         fontWeight:'bold'
     },
@@ -43,7 +43,7 @@ const custom_style = StyleSheet.create({
         height:30,
         resizeMode:'contain',
         marginLeft:21,
-        marginTop:57,
+        marginTop:30,
         background:'#FF6464'
     },
     Input_name:{

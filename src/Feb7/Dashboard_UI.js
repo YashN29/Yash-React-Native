@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import {View,Text,Image,TouchableHighlight, TextInput, FlatList, TouchableOpacity} from 'react-native';
+import React,{useState,useEffect} from "react";
+import {View,Text,Image,TouchableHighlight, TextInput, FlatList, TouchableOpacity, Alert, BackHandler} from 'react-native';
 import dashboard_CSS from "./dashboard_CSS";
 
 const DATA = [
@@ -25,10 +25,37 @@ return(<View style={dashboard_CSS.item}>
     
 }
 
-const Dashboard_UI =()=>{
+const Dashboard_UI =({route,navigation})=>{
+
+    useEffect(()=>{
+        const back =()=>{
+            Alert.alert('Exit App?','Are you sure you want to exit?',
+            [
+                {
+                    text: 'Cancel',
+                    onPress:()=> null,
+                    style:'cancel'
+                },
+                {
+                    text:'Yes',
+                    onPress:()=> BackHandler.exitApp()
+                }
+            ]);
+            return true;
+        };
+            const backHandler = BackHandler.addEventListener(
+                'hardwareBackPress',
+                back,
+            );
+            return ()=> backHandler.remove();
+    },[]);
+    
+
 
     const [count, setCount] = useState(0);
     const onPress = () => setCount(null);
+
+    const {myName} = route.params;
 
     return(
 
@@ -38,6 +65,8 @@ const Dashboard_UI =()=>{
                 <Image style={dashboard_CSS.top_logo}
                 source={require('../../icons/top_vector.png')}></Image>
             </TouchableOpacity>
+
+            {/* <Text style={dashboard_CSS.welcomeText}>Welcome, {myName} </Text> */}
             
             <View style={dashboard_CSS.mid_view}>
 

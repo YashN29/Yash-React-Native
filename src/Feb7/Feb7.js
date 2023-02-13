@@ -1,10 +1,23 @@
+import { NavigationContainer } from "@react-navigation/native";
 import React,{useState} from "react";
-import {View,Text,TextInput,Image, TouchableHighlight, TouchableOpacity, ScrollView, Pressable} from 'react-native';
+import {View,Text,TextInput,Image, TouchableHighlight, TouchableOpacity, ScrollView, Pressable, ToastAndroid} from 'react-native';
 import custom_style from "./custom_style";
 
-const Feb7=()=>{
-     const [count, setCount] = useState(0);
-     const onpress = () => setCount(null)
+const Feb7=({navigation})=>{
+    
+    const [userName, setUserName] = useState("")
+    const [userEmail, setUserEmail] = useState("") 
+
+     const onpress = () => {
+         if(userName.length >= 9 && userEmail.length >= 12){
+            navigation.navigate("Dashboard", {myName : `${userName}`});
+        }else{
+            ToastAndroid.show('Invalid Credentials!',ToastAndroid.SHORT);
+        }
+         }
+         
+         
+         
 
      const [visible, setvisible] = useState(true)
 
@@ -27,15 +40,19 @@ const Feb7=()=>{
                 <Text style={custom_style.name}>NAME</Text>
                 
                 <TextInput style={custom_style.Input_name}
-                           placeholder="Yash Nayi"
-                           placeholderTextColor='#545974'
+                           placeholder="Enter Your Name"
+                           placeholderTextColor='grey'
+                           value={userName}
+                           onChangeText={(actualData) => setUserName(actualData)}
                            selectionColor='#545974'/>
 
                 <Text style={custom_style.email}>EMAIL</Text>
                 
                 <TextInput style={custom_style.Input_email}
-                           placeholder="yash@gmail.com"
-                           placeholderTextColor='#545974'
+                           placeholder="Enter Your E-mail"
+                           value={userEmail}
+                           onChangeText={(actualData)=> setUserEmail(actualData)}
+                           placeholderTextColor='grey'
                            selectionColor='#545974'/>
 
                 <Text style={custom_style.password}>PASSWORD</Text>
@@ -46,7 +63,7 @@ const Feb7=()=>{
                             autoCorrect={false}
                             style={custom_style.Input_password}
                             placeholder="* * * * * * *"
-                            placeholderTextColor='#545974'
+                            placeholderTextColor='grey'
                             selectionColor='#545974'
                             secureTextEntry={visible}
                             />

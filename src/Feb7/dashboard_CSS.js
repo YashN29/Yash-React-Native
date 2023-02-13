@@ -12,20 +12,26 @@ const dashboard_CSS = StyleSheet.create({
         width:30,
         height:30,
         marginLeft:21,
-        marginTop:47,
+        marginTop:27,
         resizeMode:'contain',
         background:'#FF6464'
     },
+    welcomeText:{
+        fontSize:30,
+        color:'#545974',
+        marginHorizontal:20,
+        marginTop:8,
+        fontWeight:'bold'
+    },
     mid_view:{
         flexDirection:'row',
-        justifyContent:'space-between',
-        marginHorizontal:20,
-        marginTop:44,
+        justifyContent:'space-around',
+        marginTop:25,
     },
     button: {
         backgroundColor:'#F1F1F1',
-        width:157,
-        height:157,
+        width:150,
+        height:150,
         flexDirection:'column',
         borderRadius:10,
         elevation:6,
@@ -46,7 +52,7 @@ const dashboard_CSS = StyleSheet.create({
         color:'#545974',
         borderWidth:3,
         borderColor:'#FF6464',
-        marginTop:30,
+        marginTop:25,
         paddingLeft:15,
         borderRadius:10,
     },
@@ -55,18 +61,15 @@ const dashboard_CSS = StyleSheet.create({
         fontWeight:'bold',
         fontSize:20,
         paddingLeft:15
-    
     },
     item:{
         flexDirection:'row',
-        width:"100%",
-        padding:20,
-        padding:15,
+        padding:10,
         alignItems:'center',
         borderRadius:20,
         backgroundColor: 'white',
         borderColor:'#F1F1F1',
-        marginVertical:10,
+        marginVertical:8,
         borderWidth: 3
     },
     flatlist_view:{
