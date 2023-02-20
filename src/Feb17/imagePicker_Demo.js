@@ -15,7 +15,8 @@ const imagePicker_Demo = (props) => {
         ImagePicker.openPicker({
             width: 300,
             height: 400,
-            cropping: true
+            cropping: true,
+           // multiple:true,
           }).then(async(image) => {
             const base64image = await RNFS.readFile(image.path, 'base64');
             console.log(base64image);

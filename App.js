@@ -5,16 +5,17 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {View ,Image} from 'react-native';
-import HomeScreen from './src/Feb13/HomeScreen';
 import TempDrawer from './src/Feb14/TempDrawer';
-
+import HomeScreen from './src/Feb13/HomeScreen';
 import Profile from './src/Feb13/Profile';
-
 import Setting from './src/Feb13/Setting';
 
 
+
 const Test = ()=>{
+
     const Tab = createBottomTabNavigator();
+
     return(
         <Tab.Navigator screenOptions={{marginTop:20,
             tabBarStyle:{
