@@ -3,11 +3,25 @@ import {View,Text,Image,TouchableHighlight, TextInput, FlatList, TouchableOpacit
 import dashboard_CSS from "./dashboard_CSS";
 
 const DATA = [
-    {title:"Facebook",image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/Facebook.png')},
-    {title:"Amazon",image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/amazon.png')},
-    {title:"Apple",image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/apple.png')},
-    {title:"Netflix",image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/netflix.png')},
-    {title:"Hotstar"},
+    {
+        title:"Facebook",
+        image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/Facebook.png')
+    },
+    {
+        title:"Amazon",
+        image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/amazon.png')
+    },
+    {
+        title:"Apple",
+        image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/apple.png')
+    },
+    {
+        title:"Netflix",
+        image:require('/Users/creoleimac02/Desktop/Yash_ReactNative/AwesomeProject/icons/netflix.png')
+    },
+    {
+        title:"Hotstar"
+    },
   ];
 
 const Item = ({item})=>{
