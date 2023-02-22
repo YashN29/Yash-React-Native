@@ -1,11 +1,29 @@
-import React,{useRef, useState} from "react";
-import {View,Text,TextInput,Image, TouchableHighlight, TouchableOpacity, ScrollView, ToastAndroid} from 'react-native';
+import React,{useEffect, useState} from "react";
+import {View,Text,TextInput,Image, TouchableHighlight, TouchableOpacity, ScrollView, ToastAndroid, BackHandler, Alert} from 'react-native';
 import styles from "./styles";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../Store/action";
 
 const Register=({navigation})=>{
+
+    // useEffect(() => {
+    //     getData();
+    // }, [])
+    // const getData = ()=>{
+    //     try {
+    //        AsyncStorage.getItem('Email')
+    //         .then(value =>{
+    //             if(value != null){
+    //                 navigation.navigate('Dashboard')
+    //             }else{
+    //                 navigation.navigate('Register')
+    //             }
+    //         })
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     const dispatch = useDispatch();
 
@@ -13,9 +31,9 @@ const Register=({navigation})=>{
     const [password, setPassword] = useState('')
 
 
-    useSelector((store) => {store});
+    useSelector((store) => store.loginDetails);
 
-    const handelRegister =()=>{
+    const handelRegister = async ()=>{
         
         if(email == "" || password == ""){
             ToastAndroid.show('Invalid Credentials!',ToastAndroid.SHORT);
@@ -26,12 +44,38 @@ const Register=({navigation})=>{
                 password: password,}));
             navigation.navigate("Dashboard");
             setEmail("")
-            setPassword("")
-            
-              
-            
+            setPassword("") 
+
+            try{
+                await AsyncStorage.setItem('Email',email);
+            }catch(error){
+                console.log(error);
+            }
         }
     }
+
+    useEffect(()=>{
+        const back =()=>{
+            Alert.alert('Logout!','Are you sure you want to logout?',
+            [
+                {
+                    text: 'Cancel',
+                    onPress:()=> null,
+                    style:'cancel'
+                },
+                {
+                    text:'Yes',
+                    onPress:()=> BackHandler.exitApp()
+                }
+            ]);
+            return true;
+        };
+            const backHandler = BackHandler.addEventListener(
+                'hardwareBackPress',
+                back,
+            );
+            return ()=> backHandler.remove();
+    },[]);
       
 
      const [visible, setvisible] = useState(true)

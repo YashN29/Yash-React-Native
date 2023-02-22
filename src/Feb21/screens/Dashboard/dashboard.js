@@ -3,16 +3,43 @@ import {View,Text, TouchableOpacity, Alert, BackHandler, ToastAndroid} from 'rea
 import styles from "./styles";
 import { logout } from "../../Store/action";
 import { useDispatch } from "react-redux";
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Dashboard =({navigation})=>{
+
+    const [name, setName] = useState('')
+
+    useEffect(() => {
+        getData();
+    }, [])
+
+    const getData = ()=>{
+        try {
+           AsyncStorage.getItem('Email')
+            .then(value =>{
+                if(value != null){
+                    setName(value)
+                }
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const dispatch = useDispatch();
 
-    const handelLogout =()=>{ 
+    const handelLogout = async ()=>{ 
         navigation.navigate("Register");
         dispatch(logout(
             {email: '',
             password: ''}
             ));
+
+            try{
+                await AsyncStorage.setItem('Email','');
+            }catch(error){
+                console.log(error);
+            }
         }
     
 
@@ -45,6 +72,7 @@ const Dashboard =({navigation})=>{
         <View style={styles.main_view}>
 
             <View style={{alignItems:'center'}}>
+                <Text>Welcome,{name}</Text>
                 <TouchableOpacity style={{borderRadius:10}} onPress={handelLogout}>
 
                 <View style={styles.button_logout}>

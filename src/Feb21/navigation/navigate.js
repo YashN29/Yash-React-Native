@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Register from '../screens/Register/register';
 import Dashboard from '../screens/Dashboard/dashboard';
+import SplashScreen from '../screens/SplashScreen/splashscreen';
 
 
 
@@ -15,7 +16,11 @@ const Navigate = () => {
   return (
 
     <NavigationContainer>
-        <Stack.Navigator initialRouteName="Register">
+        <Stack.Navigator initialRouteName="Splashscreen">
+
+            <Stack.Screen name="Splashscreen"
+                          component={SplashScreen}
+                          options={{headerShown:false}}/>
 
             <Stack.Screen name="Register"
                           component={Register}
