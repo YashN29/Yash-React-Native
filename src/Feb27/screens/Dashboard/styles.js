@@ -4,35 +4,41 @@ const styles = StyleSheet.create({
     mainContainer:{
         flex:1,
         flexDirection:'column',
-        backgroundColor:'#069CEE'
+        backgroundColor:'#F7F7FA',
+        justifyContent:'flex-end'
+    },
+    topView:{
+        alignItems:'center',
+        backgroundColor:'#FF6464',
+        borderBottomLeftRadius:10,
+        borderBottomRightRadius:10
+    },
+    topText:{
+        fontSize:25,
+        color:'white',
+        padding:5
     },
     btn_view:{
-        alignSelf:'flex-end',
-        width:50,
-        height:50,
-        margin:10
-    },
-    button: {
-        alignItems: 'center',
         justifyContent:'center',
-        backgroundColor:'#FF6464',
+        backgroundColor:'black',
         borderRadius:60,
         elevation:6,
-        padding: 10,
-      },
+        width:50,
+        margin:20,
+        height:50,
+    },
     text_inside_btn:{
         color:'white',
         alignSelf:'center',
-        fontWeight:'bold',
-        fontSize:20
+        fontSize:30
     },
     dataView:{
-        margin:5,
+        padding:2
     },
     text:{
         fontSize:15,
         fontWeight:'bold',
-        color:'white',
+        color:'#252525',
         margin:8
     },
     flatListView:{
@@ -40,16 +46,23 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         marginHorizontal:20,
         width:'95%',
-        margin:15,
+        margin:10,
+        elevation:6,
         justifyContent:'space-between',
-        borderColor:'#F1F1F1',
-        borderRadius:10,
+        borderColor:'white',
+        backgroundColor:"#f7f7fa",
+        borderRadius:15,
         borderWidth:2,
     },
     eyeImage:{
         alignSelf:'center',
         marginRight:20,
+        tintColor:'#FF6464'
     },
+    buttonView:{
+        alignSelf:'flex-end',
+        position:'absolute'
+    }
 
 })
 

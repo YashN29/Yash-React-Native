@@ -5,13 +5,6 @@ export const add = (data)=>{
     };
 };
 
-export const fetch = (data)=>{
-    return{
-        type: 'FETCH',
-        payload : data
-    };
-};
-
 export const update = (data)=>{
     return{
         type: 'UPDATE',

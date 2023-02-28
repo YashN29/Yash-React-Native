@@ -14,7 +14,7 @@ export default (state = initialState,action)=>{
         case 'UPDATE':
             return{
                 ...state,
-                data : [action.payload]
+                data : action.payload,
             }
 
         case 'DELETE':
