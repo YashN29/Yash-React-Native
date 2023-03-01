@@ -29,17 +29,17 @@ const Dashboard =({navigation})=>{
     const dispatch = useDispatch();
 
     const handelLogout = async ()=>{ 
-        navigation.navigate("Register");
-        dispatch(logout(
-            {email: '',
-            password: ''}
-            ));
+        navigation.navigate("Login");
+        // dispatch(logout(
+        //     {email: '',
+        //     password: ''}
+        //     ));
 
-            try{
-                await AsyncStorage.setItem('Email','');
-            }catch(error){
-                console.log(error);
-            }
+        //     try{
+        //         await AsyncStorage.setItem('Email','');
+        //     }catch(error){
+        //         console.log(error);
+        //     }
         }
     
 

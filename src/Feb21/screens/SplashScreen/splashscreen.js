@@ -8,27 +8,31 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen = ({navigation}) => {
 
+  setTimeout(() => {
+    navigation.navigate('Login')
+  }, 1500);
 
-  const getData = ()=>{
-      try {
-        AsyncStorage.getItem('Email')
-          .then(value =>{
-              if(value != null){
-                  navigation.navigate('Dashboard')
-              }else{
-                  navigation.navigate('Register')
-              }
-          })
-      } catch (error) {
-          console.log(error);
-      }
-  }
-  useEffect(() => {
-    setTimeout(() => {
-      getData();
-    }, 2000);
 
-}, [])
+//   const getData = ()=>{
+//       try {
+//         AsyncStorage.getItem('Email')
+//           .then(value =>{
+//               if(value != null){
+//                   navigation.navigate('Dashboard')
+//               }else{
+//                   navigation.navigate('Register')
+//               }
+//           })
+//       } catch (error) {
+//           console.log(error);
+//       }
+//   }
+//   useEffect(() => {
+//     setTimeout(() => {
+//       getData();
+//     }, 2000);
+
+// }, [])
 
         
   return (

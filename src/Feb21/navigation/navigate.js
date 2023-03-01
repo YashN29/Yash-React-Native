@@ -6,37 +6,47 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Register from '../screens/Register/register';
 import Dashboard from '../screens/Dashboard/dashboard';
 import SplashScreen from '../screens/SplashScreen/splashscreen';
-
-
+import Login from '../screens/Login/Login';
 
 const Navigate = () => {
-
   const Stack = createNativeStackNavigator();
 
   return (
-
     <NavigationContainer>
-        <Stack.Navigator initialRouteName="Splashscreen">
+      <Stack.Navigator initialRouteName="Splashscreen">
+        <Stack.Screen
+          name="Splashscreen"
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
 
-            <Stack.Screen name="Splashscreen"
-                          component={SplashScreen}
-                          options={{headerShown:false}}/>
+        <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{headerShown: true}}
+        />
 
-            <Stack.Screen name="Register"
-                          component={Register}
-                          options={{headerShown:false}}/>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{headerShown: false}}
+        />
 
-            <Stack.Screen name="Dashboard"
-                          component={Dashboard}
-                          options={({route})=>({title:"Welcome, "+route.params.myName,
-                          headerStyle:{
-                            backgroundColor:'#FF6464',
-                        },
-                        headerTintColor:'white',
-                        }),{headerBackVisible:false}}
-                          />
-
-        </Stack.Navigator>
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
+          options={
+            (({route}) => ({
+              title: 'Welcome, ' + route.params.myName,
+              headerStyle: {
+                backgroundColor: '#FF6464',
+              },
+              headerTintColor: 'white',
+            }),
+            {headerBackVisible: false})
+          }
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

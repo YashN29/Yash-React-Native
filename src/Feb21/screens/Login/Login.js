@@ -17,79 +17,39 @@ import {useDispatch, useSelector} from 'react-redux';
 import {register} from '../../Store/action';
 import database from '@react-native-firebase/database';
 
-const Register = ({navigation}) => {
-  // useEffect(() => {
-  //     getData();
-  // }, [])
-  // const getData = ()=>{
-  //     try {
-  //        AsyncStorage.getItem('Email')
-  //         .then(value =>{
-  //             if(value != null){
-  //                 navigation.navigate('Dashboard')
-  //             }else{
-  //                 navigation.navigate('Register')
-  //             }
-  //         })
-  //     } catch (error) {
-  //         console.log(error);
-  //     }
-  // }
-
-  //const dispatch = useDispatch();
-
+const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  //useSelector(store => store.loginDetails);
+  const [visible, setvisible] = useState(true);
 
-  const handelRegister = () => {
+  const handelLogin = () => {
     if (email == '' || password == '') {
       ToastAndroid.show('Invalid Credentials!', ToastAndroid.SHORT);
     } else {
       database()
         .ref('/users/')
-        .push({
-          email: email,
-          password: password,
-        })
-        .then(() => console.log('Data set.'));
-        ToastAndroid.show('Successfully Registered!',ToastAndroid.SHORT);
-        navigation.navigate('Login')
-
-      // dispatch(register({email: email, password: password}));
-      // navigation.navigate('Dashboard');
-      // setEmail('');
-      // setPassword('');
-
-      // try {
-      //   await AsyncStorage.setItem('Email', email);
-      // } catch (error) {
-      //   console.log(error);
-      // }
+        .once('value')
+        .then(snapshot => {
+          const data = Object.values(snapshot.val());
+          const isUser = data.filter(x => {
+            console.log(x);
+            return x.email === email && x.password === password;
+          });
+          if (isUser.length > 0) {
+            ToastAndroid.show('Login Successfully', ToastAndroid.SHORT);
+            navigation.navigate('Dashboard');
+            setEmail('');
+            setPassword('');
+          } else {
+            ToastAndroid.show('Invalid!', ToastAndroid.SHORT);
+          }
+        });
     }
   };
-
-  useEffect(() => {
-    const back = () => {
-      Alert.alert('Logout!', 'Are you sure you want to logout?', [
-        {
-          text: 'Cancel',
-          onPress: () => null,
-          style: 'cancel',
-        },
-        {
-          text: 'Yes',
-          onPress: () => BackHandler.exitApp(),
-        },
-      ]);
-      return true;
-    };
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', back);
-    return () => backHandler.remove();
-  }, []);
-
-  const [visible, setvisible] = useState(true);
+  const handleRegister = () => {
+    navigation.navigate('Register');
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -101,7 +61,7 @@ const Register = ({navigation}) => {
               source={require('../../../../icons/top_vector.png')}></Image>
           </TouchableOpacity>
 
-          <Text style={styles.Register}>REGISTER</Text>
+          <Text style={styles.Register}>LOGIN</Text>
 
           <Text style={styles.email}>EMAIL</Text>
 
@@ -145,16 +105,22 @@ const Register = ({navigation}) => {
           <View style={styles.btn_view}>
             <TouchableHighlight
               style={{borderRadius: 10}}
-              onPress={handelRegister}>
+              onPress={handelLogin}>
               <View style={styles.button}>
-                <Text style={styles.text_inside_btn}>Register</Text>
+                <Text style={styles.text_inside_btn}>Login</Text>
               </View>
             </TouchableHighlight>
           </View>
+
+          <Text style={styles.text_bottom}>Don't have an account?</Text>
+
+          <TouchableOpacity onPress={handleRegister}>
+            <Text style={styles.text_login}>RGISTER</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
   );
 };
 
-export default Register;
+export default Login;
