@@ -4,9 +4,9 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Register from '../screens/Register/register';
-import Dashboard from '../screens/Dashboard/dashboard';
 import SplashScreen from '../screens/SplashScreen/splashscreen';
 import Login from '../screens/Login/Login';
+import DashboardNavigation from './DashboardNavigation';
 
 const Navigate = () => {
   const Stack = createNativeStackNavigator();
@@ -23,7 +23,7 @@ const Navigate = () => {
         <Stack.Screen
           name="Register"
           component={Register}
-          options={{headerShown: true}}
+          options={{headerShown: false}}
         />
 
         <Stack.Screen
@@ -33,18 +33,9 @@ const Navigate = () => {
         />
 
         <Stack.Screen
-          name="Dashboard"
-          component={Dashboard}
-          options={
-            (({route}) => ({
-              title: 'Welcome, ' + route.params.myName,
-              headerStyle: {
-                backgroundColor: '#FF6464',
-              },
-              headerTintColor: 'white',
-            }),
-            {headerBackVisible: false})
-          }
+          name="DashboardNavigation"
+          component={DashboardNavigation}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

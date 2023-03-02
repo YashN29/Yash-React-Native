@@ -3,7 +3,7 @@ import React,{useEffect} from 'react';
 import LottieView from 'lottie-react-native';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import database from '@react-native-firebase/database';
 
 
 const SplashScreen = ({navigation}) => {

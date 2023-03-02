@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         backgroundColor:'#FF6464',
         borderRadius:10,
-        elevation:6,
         padding: 10,
       },
     text_inside_btn:{

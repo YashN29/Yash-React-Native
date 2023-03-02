@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     main_view:{
         flex:1,
         flexDirection:'column',
-        backgroundColor:'white',
+        backgroundColor:'#F7F7FA',
         justifyContent:'center'
     },
     top_logo:{

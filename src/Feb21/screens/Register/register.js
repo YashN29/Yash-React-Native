@@ -10,6 +10,7 @@ import {
   ToastAndroid,
   BackHandler,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,6 +19,18 @@ import {register} from '../../Store/action';
 import database from '@react-native-firebase/database';
 
 const Register = ({navigation}) => {
+  let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+  const handleValidEmail = val => {
+    if (val.length === 0) {
+      setEmailValidError('email address must be enter!');
+    } else if (reg.test(val) === false) {
+      setEmailValidError('enter valid email!');
+    } else if (reg.test(val) === true) {
+      setEmailValidError('');
+    }
+  };
+
   // useEffect(() => {
   //     getData();
   // }, [])
@@ -38,8 +51,12 @@ const Register = ({navigation}) => {
 
   //const dispatch = useDispatch();
 
+
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [emailValidError, setEmailValidError] = useState('');
   const [password, setPassword] = useState('');
+  const [visible, setvisible] = useState(true);
 
   //useSelector(store => store.loginDetails);
 
@@ -47,15 +64,20 @@ const Register = ({navigation}) => {
     if (email == '' || password == '') {
       ToastAndroid.show('Invalid Credentials!', ToastAndroid.SHORT);
     } else {
-      database()
-        .ref('/users/')
-        .push({
-          email: email,
-          password: password,
-        })
-        .then(() => console.log('Data set.'));
-        ToastAndroid.show('Successfully Registered!',ToastAndroid.SHORT);
-        navigation.navigate('Login')
+      if (reg.test(email) === false) {
+        ToastAndroid.show('enter valid email!', ToastAndroid.SHORT);
+      } else if (reg.test(email) === true) {
+        database()
+          .ref('Users/')
+          .push({
+            name: name,
+            email: email,
+            password: password,
+          })
+          .then(() => console.log('Data set.'));
+        ToastAndroid.show('Successfully Registered!', ToastAndroid.SHORT);
+        navigation.navigate('Login', {userName:`${name}`});
+      }
 
       // dispatch(register({email: email, password: password}));
       // navigation.navigate('Dashboard');
@@ -89,8 +111,6 @@ const Register = ({navigation}) => {
     return () => backHandler.remove();
   }, []);
 
-  const [visible, setvisible] = useState(true);
-
   return (
     <View style={styles.mainContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -103,16 +123,36 @@ const Register = ({navigation}) => {
 
           <Text style={styles.Register}>REGISTER</Text>
 
+          <Text style={styles.name}>NAME</Text>
+
+          <TextInput
+            value={name}
+            style={styles.Input_name}
+            placeholder="Enter Your Name"
+            onChangeText={actualName => setName(actualName)}
+            placeholderTextColor="grey"
+            selectionColor="#545974"
+          />
+
           <Text style={styles.email}>EMAIL</Text>
 
           <TextInput
             value={email}
             style={styles.Input_email}
             placeholder="Enter Your E-mail"
-            onChangeText={actualEmail => setEmail(actualEmail)}
+            onChangeText={actualEmail => {
+              setEmail(actualEmail);
+              handleValidEmail(actualEmail);
+            }}
             placeholderTextColor="grey"
             selectionColor="#545974"
           />
+          {emailValidError ? (
+            <Text
+              style={{color: 'red', alignSelf: 'flex-end', marginRight: 15}}>
+              {emailValidError}
+            </Text>
+          ) : null}
 
           <Text style={styles.password}>PASSWORD</Text>
 

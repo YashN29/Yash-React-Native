@@ -1,94 +1,76 @@
-import React,{useState,useEffect} from "react";
-import {View,Text, TouchableOpacity, Alert, BackHandler, ToastAndroid} from 'react-native';
-import styles from "./styles";
-import { logout } from "../../Store/action";
-import { useDispatch } from "react-redux";
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  BackHandler,
+  ToastAndroid,
+} from 'react-native';
+import styles from './styles';
+import {logout} from '../../Store/action';
+import {useDispatch} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Dashboard =({navigation})=>{
+const Dashboard = ({navigation}) => {
+  // useEffect(() => {
+  //     getData();
+  // }, [])
 
-    const [name, setName] = useState('')
+  // const getData = ()=>{
+  //     try {
+  //        AsyncStorage.getItem('Email')
+  //         .then(value =>{
+  //             if(value != null){
+  //                 setName(value)
+  //             }
+  //         })
+  //     } catch (error) {
+  //         console.log(error);
+  //     }
+  // }
 
-    useEffect(() => {
-        getData();
-    }, [])
+  //const dispatch = useDispatch();
 
-    const getData = ()=>{
-        try {
-           AsyncStorage.getItem('Email')
-            .then(value =>{
-                if(value != null){
-                    setName(value)
-                }
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    }
+  // const handelLogout = () => {
+  //   navigation.navigate('Login');
+    // dispatch(logout(
+    //     {email: '',
+    //     password: ''}
+    //     ));
 
-    const dispatch = useDispatch();
+    //     try{
+    //         await AsyncStorage.setItem('Email','');
+    //     }catch(error){
+    //         console.log(error);
+    //     }
+  //};
 
-    const handelLogout = async ()=>{ 
-        navigation.navigate("Login");
-        // dispatch(logout(
-        //     {email: '',
-        //     password: ''}
-        //     ));
+  useEffect(() => {
+    const back = () => {
+      Alert.alert('Logout!', 'Are you sure you want to logout?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          onPress: () => BackHandler.exitApp(),
+        },
+      ]);
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', back);
+    return () => backHandler.remove();
+  }, []);
 
-        //     try{
-        //         await AsyncStorage.setItem('Email','');
-        //     }catch(error){
-        //         console.log(error);
-        //     }
-        }
-    
-
-    useEffect(()=>{
-        const back =()=>{
-            Alert.alert('Logout!','Are you sure you want to logout?',
-            [
-                {
-                    text: 'Cancel',
-                    onPress:()=> null,
-                    style:'cancel'
-                },
-                {
-                    text:'Yes',
-                    onPress:()=> BackHandler.exitApp()
-                }
-            ]);
-            return true;
-        };
-            const backHandler = BackHandler.addEventListener(
-                'hardwareBackPress',
-                back,
-            );
-            return ()=> backHandler.remove();
-    },[]);
-    
-
-    return(
-
-        <View style={styles.main_view}>
-
-            <View style={{alignItems:'center'}}>
-                <Text>Welcome,{name}</Text>
-                <TouchableOpacity style={{borderRadius:10}} onPress={handelLogout}>
-
-                <View style={styles.button_logout}>
-                    <Text style={styles.text_inside_btn}>Logout</Text>
-                </View>
-
-                </TouchableOpacity>
-            </View>
-    
-        </View>
-    )
-}
+  return (
+    <View style={styles.main_view}>
+      <View style={{alignItems: 'center'}}>
+      </View>
+    </View>
+  );
+};
 
 export default Dashboard;
-
-
-
-
-{/* <Text style={styles.welcomeText}>Welcome, {myName} </Text> */}

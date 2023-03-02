@@ -10,6 +10,7 @@ import {
   ToastAndroid,
   BackHandler,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,6 +19,9 @@ import {register} from '../../Store/action';
 import database from '@react-native-firebase/database';
 
 const Login = ({navigation}) => {
+  const [oldEmail, setoldEmail] = useState('');
+  const [oldPassword, setoldPassword] = useState('');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -25,24 +29,26 @@ const Login = ({navigation}) => {
 
   const handelLogin = () => {
     if (email == '' || password == '') {
-      ToastAndroid.show('Invalid Credentials!', ToastAndroid.SHORT);
+      ToastAndroid.show('Please enter details!', ToastAndroid.SHORT);
     } else {
       database()
-        .ref('/users/')
+        .ref('/Users')
         .once('value')
         .then(snapshot => {
           const data = Object.values(snapshot.val());
-          const isUser = data.filter(x => {
-            console.log(x);
+          const isUser = data.forEach(x => {
+            setoldEmail(x.email);
+            setoldPassword(x.password);
+
             return x.email === email && x.password === password;
           });
-          if (isUser.length > 0) {
+          if (oldEmail == email || oldPassword == password) {
             ToastAndroid.show('Login Successfully', ToastAndroid.SHORT);
-            navigation.navigate('Dashboard');
+            navigation.navigate('DashboardNavigation');
             setEmail('');
             setPassword('');
           } else {
-            ToastAndroid.show('Invalid!', ToastAndroid.SHORT);
+            ToastAndroid.show('Invalid credentials!', ToastAndroid.SHORT);
           }
         });
     }
@@ -115,7 +121,7 @@ const Login = ({navigation}) => {
           <Text style={styles.text_bottom}>Don't have an account?</Text>
 
           <TouchableOpacity onPress={handleRegister}>
-            <Text style={styles.text_login}>RGISTER</Text>
+            <Text style={styles.text_login}>REGISTER</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

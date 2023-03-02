@@ -37,7 +37,6 @@ const MainScreen = () => {
           <TouchableOpacity style={styles.button} onPress={() => getQuote()}>
             <Text style={styles.textInsideButton}>Load Quote</Text>
           </TouchableOpacity>
-          
         </View>
     </View>
   );

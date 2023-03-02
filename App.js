@@ -25,7 +25,6 @@ const Test = ()=>{
                 borderTopRightRadius:25,
                 borderTopLeftRadius:25,
             },
-            //headerShown:false
             }}>
 
 <Tab.Screen name='Home' component={HomeScreen} options={{
