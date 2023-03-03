@@ -7,6 +7,7 @@ import Register from '../screens/Register/register';
 import SplashScreen from '../screens/SplashScreen/splashscreen';
 import Login from '../screens/Login/Login';
 import DashboardNavigation from './DashboardNavigation';
+import Profile from '../screens/Profile/Profile';
 
 const Navigate = () => {
   const Stack = createNativeStackNavigator();
@@ -36,6 +37,12 @@ const Navigate = () => {
           name="DashboardNavigation"
           component={DashboardNavigation}
           options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{headerShown: true}}
         />
       </Stack.Navigator>
     </NavigationContainer>

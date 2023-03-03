@@ -6,38 +6,42 @@ import Dashboard from '../screens/Dashboard/dashboard';
 import Icon  from 'react-native-vector-icons/Ionicons';
 import DashboardDrawer from './DashboardDrawer';
 import 'react-native-gesture-handler'
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 const DashboardNavigation = () => {
-  const Tab = createBottomTabNavigator();
+  const Tab = createMaterialTopTabNavigator();
 
   return (
     <Tab.Navigator
-      screenOptions={({route})=>({
-        tabBarIcon: ({focused,size})=>{
-            let iconName;
-            if(route.name === "Dashboard"){
-                iconName = focused ? "home": "home-outline"
-            }else if(route.name === "Profile"){
-                iconName = focused ? "person": "person-outline"
-            }
-            return <Icon name={iconName} size={size} color={"white"}/> 
-        },
-        tabBarLabelStyle:{
-            color:'white'
-        },
-        tabBarStyle:{
-            backgroundColor:'#252525',
-            position:'absolute',
-            height:55,
-            borderTopRightRadius:20,
-            borderTopLeftRadius:20,
-        }
-      })
+      // screenOptions={({route})=>({
+      //   tabBarIcon: ({focused,size})=>{
+      //       let iconName;
+      //       if(route.name === "Dashboard"){
+      //           iconName = focused ? "home": "home-outline"
+      //       }else if(route.name === "Profile"){
+      //           iconName = focused ? "person": "person-outline"
+      //       }
+      //       return <Icon name={iconName} size={size} color={"white"}/> 
+      //   },
+      //   tabBarLabelStyle:{
+      //       color:'white'
+      //   },
+      //   tabBarStyle:{
+      //       backgroundColor:'#252525',
+      //       position:'absolute',
+      //       height:55,
+      //       borderTopRightRadius:20,
+      //       borderTopLeftRadius:20,
+      //   }
+      // })
         
-      }>
+      //}
+      
+      >
         <Tab.Screen name="Dashboard"
       component={DashboardDrawer}
-      options={{headerShown:false}}/>
+      // options={{headerShown:false}}
+      />
 
       <Tab.Screen name="Profile"
       component={Profile}/>

@@ -1,14 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import styles from './styles'
+import styles from './styles';
 
-
-const Register = () => {
+const Status = () => {
   return (
     <View style={styles.mainContainer}>
-      <Text>Register</Text>
+      <Text>Status</Text>
     </View>
   )
 }
 
-export default Register;
+export default Status;

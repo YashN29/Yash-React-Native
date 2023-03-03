@@ -68,8 +68,8 @@ const Register = ({navigation}) => {
         ToastAndroid.show('enter valid email!', ToastAndroid.SHORT);
       } else if (reg.test(email) === true) {
         database()
-          .ref('Users/')
-          .push({
+          .ref('Users/' + name)
+          .set({
             name: name,
             email: email,
             password: password,
@@ -92,24 +92,24 @@ const Register = ({navigation}) => {
     }
   };
 
-  useEffect(() => {
-    const back = () => {
-      Alert.alert('Logout!', 'Are you sure you want to logout?', [
-        {
-          text: 'Cancel',
-          onPress: () => null,
-          style: 'cancel',
-        },
-        {
-          text: 'Yes',
-          onPress: () => BackHandler.exitApp(),
-        },
-      ]);
-      return true;
-    };
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', back);
-    return () => backHandler.remove();
-  }, []);
+  // useEffect(() => {
+  //   const back = () => {
+  //     Alert.alert('Logout!', 'Are you sure you want to logout?', [
+  //       {
+  //         text: 'Cancel',
+  //         onPress: () => null,
+  //         style: 'cancel',
+  //       },
+  //       {
+  //         text: 'Yes',
+  //         onPress: () => BackHandler.exitApp(),
+  //       },
+  //     ]);
+  //     return true;
+  //   };
+  //   const backHandler = BackHandler.addEventListener('hardwareBackPress', back);
+  //   return () => backHandler.remove();
+  // }, []);
 
   return (
     <View style={styles.mainContainer}>

@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableHighlight,
   TouchableOpacity,
   ScrollView,
   ToastAndroid,
@@ -19,9 +18,8 @@ import {register} from '../../Store/action';
 import database from '@react-native-firebase/database';
 
 const Login = ({navigation}) => {
-  const [oldEmail, setoldEmail] = useState('');
-  const [oldPassword, setoldPassword] = useState('');
-
+  const [exitApp, setexitApp] = useState(0);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -32,19 +30,20 @@ const Login = ({navigation}) => {
       ToastAndroid.show('Please enter details!', ToastAndroid.SHORT);
     } else {
       database()
-        .ref('/Users')
+        .ref('/Users/' + name)
         .once('value')
         .then(snapshot => {
           const data = Object.values(snapshot.val());
-          const isUser = data.forEach(x => {
-            setoldEmail(x.email);
-            setoldPassword(x.password);
-
+          const isUser = data.filter(x => {
+            //setoldEmail(x.email);
+            // setoldPassword(x.password);
+            //setName(x.name);
+            console.log(x);
             return x.email === email && x.password === password;
           });
-          if (oldEmail == email || oldPassword == password) {
+          if (isUser.length > 0) {
             ToastAndroid.show('Login Successfully', ToastAndroid.SHORT);
-            navigation.navigate('DashboardNavigation');
+            navigation.navigate('Profile', data);
             setEmail('');
             setPassword('');
           } else {
@@ -56,6 +55,25 @@ const Login = ({navigation}) => {
   const handleRegister = () => {
     navigation.navigate('Register');
   };
+
+  useEffect(() => {
+    const back = () => {
+      Alert.alert('Logout!', 'Are you sure you want to logout?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          onPress: () => BackHandler.exitApp(),
+        },
+      ]);
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', back);
+    return () => backHandler.remove();
+  }, []);
 
   return (
     <View style={styles.mainContainer}>
@@ -109,13 +127,11 @@ const Login = ({navigation}) => {
           </View>
 
           <View style={styles.btn_view}>
-            <TouchableHighlight
-              style={{borderRadius: 10}}
-              onPress={handelLogin}>
-              <View style={styles.button}>
-                <Text style={styles.text_inside_btn}>Login</Text>
-              </View>
-            </TouchableHighlight>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handelLogin()}>
+              <Text style={styles.text_inside_btn}>Login</Text>
+            </TouchableOpacity>
           </View>
 
           <Text style={styles.text_bottom}>Don't have an account?</Text>
