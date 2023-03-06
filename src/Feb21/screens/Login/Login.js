@@ -25,6 +25,23 @@ const Login = ({navigation}) => {
 
   const [visible, setvisible] = useState(true);
 
+  useEffect(() => {
+    getData();
+}, [])
+const getData = ()=>{
+    try {
+       AsyncStorage.getItem('Email')
+        .then(value =>{
+            if(value != null){
+                navigation.navigate('Profile')
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
   const handelLogin = () => {
     if (email == '' || password == '') {
       ToastAndroid.show('Please enter details!', ToastAndroid.SHORT);

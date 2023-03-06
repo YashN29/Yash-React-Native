@@ -12,7 +12,7 @@ const Navigate = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='SplashScreen'>
+      <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen
           name="SplashScreen"
           component={SplashScreen}
@@ -32,7 +32,14 @@ const Navigate = () => {
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
-          options={{headerShown: false}}
+          options={{
+            headerShown: true,
+            headerBackVisible: false,
+            headerStyle: {
+              backgroundColor: '#069CEE',
+            },
+            headerTintColor:'#F7F7FA'
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

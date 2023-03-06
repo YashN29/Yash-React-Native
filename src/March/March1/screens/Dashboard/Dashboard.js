@@ -2,13 +2,15 @@ import { View, Text, useWindowDimensions } from 'react-native'
 import React,{useState} from 'react'
 import styles from './styles'
 import { TabView, SceneMap } from 'react-native-tab-view';
+import Chats from '../Screen1/Chats';
+import Status from '../Screen2/Status';
 
 const FirstRoute=()=>(
-  <View/>
+  <Chats/>
 );
 
 const SecondRoute = ()=>(
-  <View/>
+  <Status/>
 );
 
 const renderScene = SceneMap({

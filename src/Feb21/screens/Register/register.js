@@ -30,25 +30,7 @@ const Register = ({navigation}) => {
       setEmailValidError('');
     }
   };
-
-  // useEffect(() => {
-  //     getData();
-  // }, [])
-  // const getData = ()=>{
-  //     try {
-  //        AsyncStorage.getItem('Email')
-  //         .then(value =>{
-  //             if(value != null){
-  //                 navigation.navigate('Dashboard')
-  //             }else{
-  //                 navigation.navigate('Register')
-  //             }
-  //         })
-  //     } catch (error) {
-  //         console.log(error);
-  //     }
-  // }
-
+  
   //const dispatch = useDispatch();
 
 
@@ -60,13 +42,19 @@ const Register = ({navigation}) => {
 
   //useSelector(store => store.loginDetails);
 
-  const handelRegister = () => {
+  const handelRegister = async () => {
     if (email == '' || password == '') {
       ToastAndroid.show('Invalid Credentials!', ToastAndroid.SHORT);
     } else {
       if (reg.test(email) === false) {
         ToastAndroid.show('enter valid email!', ToastAndroid.SHORT);
       } else if (reg.test(email) === true) {
+        try {
+          await AsyncStorage.setItem('Email', email);
+          await AsyncStorage.setItem('Password', password);
+        } catch (error) {
+          console.log(error);
+        }
         database()
           .ref('Users/' + name)
           .set({
@@ -83,12 +71,6 @@ const Register = ({navigation}) => {
       // navigation.navigate('Dashboard');
       // setEmail('');
       // setPassword('');
-
-      // try {
-      //   await AsyncStorage.setItem('Email', email);
-      // } catch (error) {
-      //   console.log(error);
-      // }
     }
   };
 

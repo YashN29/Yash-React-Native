@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   textLoginDesp: {
-    fontSize: 12,
+    fontSize: 16,
     color: '#B9C5D1',
     marginTop: 6,
   },
@@ -81,6 +81,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontWeight: 'bold',
   },
+  googleButton:{
+    width: '60%', 
+    height: 60,
+    alignSelf:'center',
+    marginTop:30,
+  }
 });
 
 export default styles;
