@@ -5,6 +5,7 @@ import { TabView, SceneMap } from 'react-native-tab-view';
 import Chats from '../Screen1/Chats';
 import Status from '../Screen2/Status';
 
+
 const FirstRoute=()=>(
   <Chats/>
 );
@@ -24,8 +25,8 @@ const Dashboard = () => {
 
   const [index, setindex] = useState(0);
   const [routes] = React.useState([
-    { key: 'first', title: 'First' },
-    { key: 'second', title: 'Second' },
+    { key: 'first', title: 'Users' },
+    { key: 'second', title: 'Profile' },
   ]);
 
   return (

@@ -1,5 +1,13 @@
-import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
-import React, {useEffect} from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  ScrollView,
+  ToastAndroid,
+} from 'react-native';
+import React, {useEffect,useState} from 'react';
 import styles from './styles';
 import {
   GoogleSignin,
@@ -9,30 +17,55 @@ import {
 import {LoginManager, AccessToken} from 'react-native-fbsdk-next';
 import auth from '@react-native-firebase/auth';
 
+
 const Login = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const loginUser = () => {
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(()=>{
+        console.log('Signed in successfully!');
+        ToastAndroid.show('Login Successfully!',ToastAndroid.SHORT);
+        navigation.navigate('Profile')
+        setEmail('')
+        setPassword('')
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+    
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+        ToastAndroid.show('Invalid credentials!',ToastAndroid.SHORT);
+        console.log(error);
+      });
+  };
+
+  const registerUser = () => {
+    navigation.navigate('Register');
+  };
   const signUpwithFacebook = async () => {
     // Attempt login with permissions
     const result = await LoginManager.logInWithPermissions([
       'public_profile',
       'email',
     ]);
-
     if (result.isCancelled) {
       throw 'User cancelled the login process';
     }
-
     // Once signed in, get the users AccesToken
     const data = await AccessToken.getCurrentAccessToken();
-
     if (!data) {
       throw 'Something went wrong obtaining access token';
     }
-
     // Create a Firebase credential with the AccessToken
     const facebookCredential = auth.FacebookAuthProvider.credential(
       data.accessToken,
     );
-
     // Sign-in the user with the credential
     return auth().signInWithCredential(facebookCredential);
   };
@@ -65,43 +98,74 @@ const Login = ({navigation}) => {
 
   return (
     <View style={styles.mainConatiner}>
-      <View style={styles.topView}>
-        <Text style={styles.loginText}>Login</Text>
-        <Text style={styles.textLoginDesp}>Please Sign in to continue.</Text>
-      </View>
-      <View style={styles.middelView}>
-        <Text style={styles.TextName}>EMAIL</Text>
-        <TextInput
-          style={styles.Input_email}
-          placeholder="E-mail"
-          placeholderTextColor="#B9C5D1"
-          selectionColor="#545974"
-        />
+      <ScrollView>
+        <View style={styles.topView}>
+          <Text style={styles.loginText}>Login</Text>
+          <Text style={styles.textLoginDesp}>Please Sign in to continue.</Text>
+        </View>
+        <View style={styles.middelView}>
+          <Text style={styles.TextName}>EMAIL</Text>
+          <TextInput
+            value={email}
+            onChangeText={actualEmail =>{
+              setEmail(actualEmail)
+            }}
+            style={styles.Input_email}
+            placeholder="E-mail"
+            placeholderTextColor="#B9C5D1"
+            selectionColor="#545974"
+          />
 
-        <Text style={styles.TextEmail}>PASSWORD</Text>
-        <TextInput
-          style={styles.Input_email}
-          placeholder="Password"
-          placeholderTextColor="#B9C5D1"
-          selectionColor="#545974"
-        />
-      </View>
-      <View style={styles.btn_view}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            signUpwithFacebook().then(() => navigation.navigate('Dashboard'))
-          }>
-          <Text style={styles.text_inside_btn}>Login With Facebook</Text>
+          <Text style={styles.TextEmail}>PASSWORD</Text>
+          <TextInput
+            value={password}
+            onChangeText={actualPassword =>{
+              setPassword(actualPassword)
+            }}
+            style={styles.Input_email}
+            placeholder="Password"
+            placeholderTextColor="#B9C5D1"
+            selectionColor="#545974"
+          />
+        </View>
+
+        <View style={styles.btn_view}>
+          <TouchableOpacity style={styles.button} onPress={loginUser}>
+            <Text style={styles.text_inside_btn}>Login</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignSelf: 'center',
+          }}>
+          <View style={styles.btn_view}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() =>
+                signUpwithFacebook().then(() => navigation.navigate('Profile'))
+              }>
+              <Text style={styles.text_inside_btn}>Login With Facebook</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.btn_view}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => signUpwithGoogle()}>
+              <Text style={styles.text_inside_btn}>Sign in With Google</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <Text style={styles.text_bottom}>Don't have an account?</Text>
+
+        <TouchableOpacity onPress={registerUser}>
+          <Text style={styles.text_login}>REGISTER</Text>
         </TouchableOpacity>
-      </View>
-
-      <GoogleSigninButton
-        style={styles.googleButton}
-        size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Dark}
-        onPress={() => signUpwithGoogle()}
-      />
+      </ScrollView>
     </View>
   );
 };

@@ -1,16 +1,14 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import SplashScreen from '../screens/SplashScreen/SplashScreen';
-import Register from '../screens/Register/Register';
 import Login from '../screens/Login/Login';
+import Authenticate from '../screens/Authenticate/Authenticate';
 import Dashboard from '../screens/Dashboard/Dashboard';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import Status from '../screens/Screen2/Status';
 
 const Navigate = () => {
   const Stack = createNativeStackNavigator();
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SplashScreen">
@@ -25,30 +23,19 @@ const Navigate = () => {
           component={Login}
           options={{headerShown: false}}
         />
+
         <Stack.Screen
-          name="Register"
-          component={Register}
+          name="Authenticate"
+          component={Authenticate}
           options={{headerShown: false}}
         />
+
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
-          options={{
-            headerShown: true,
-            headerBackVisible: false,
-            headerStyle: {
-              backgroundColor: '#069CEE',
-            },
-            headerTintColor: '#F7F7FA',
-          }}
+          options={{headerShown: true,
+          headerBackTitleVisible:false}}
         />
-        <Stack.Screen 
-        name="Profile" 
-        component={Status}
-        options={{
-          headerShown: true,
-          headerBackVisible:false
-        }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

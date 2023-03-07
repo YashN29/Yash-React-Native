@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#1D2038',
-    alignItems: 'flex-start',
   },
   topView: {
     alignItems: 'flex-start',
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
     marginTop:8
   },
   btn_view: {
-    width: '60%',
+    width: '45%',
     alignSelf:'center',
     marginTop: 50,
     marginHorizontal: 15,
@@ -86,7 +85,20 @@ const styles = StyleSheet.create({
     height: 60,
     alignSelf:'center',
     marginTop:30,
-  }
+  },
+  text_bottom:{
+    color:'#545974',
+    alignSelf:'center',
+    width:170,
+    marginTop:20
+},
+text_login:{
+    alignSelf:'center',
+    fontWeight:'bold',
+    marginTop:5,
+    textDecorationLine:'underline',
+    color:'#00E0C6'
+},
 });
 
 export default styles;

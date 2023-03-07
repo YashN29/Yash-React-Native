@@ -1,19 +1,19 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    mainConatiner: {
-        flex: 1,
-        flexDirection: 'column',
+    mainContainer:{
+        flex:1,
+        flexDirection:'column',
         backgroundColor: '#1D2038',
-      },
-      topView: {
         alignItems: 'flex-start',
-        marginTop: 50,
+    },
+    topView: {
+        alignItems: 'flex-start',
         marginLeft: 20,
       },
       loginText: {
         color: '#F7F7FA',
-        fontSize: 40,
+        fontSize: 35,
         fontWeight: 'bold',
       },
       textLoginDesp: {
@@ -24,20 +24,11 @@ const styles = StyleSheet.create({
       middelView:{
         flexDirection:'column',
         alignItems:'flex-start',
-        marginTop:50,
+        marginTop:20,
         marginHorizontal:15,
         width:'95%'
       },
-      TextName: {
-        height: 10,
-        fontSize: 10,
-        color: '#F7F7FA',
-        lineHeight: 12,
-        fontStyle: 'normal',
-        fontWeight: 'bold',
-        marginHorizontal:8
-      },
-      TextEmail: {
+      TextOtp: {
         height: 10,
         fontSize: 10,
         color: '#F7F7FA',
@@ -47,7 +38,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop:20
       },
-      Input_email: {
+      inputOtp: {
         alignSelf: 'center',
         height: 50,
         width:'98%',
