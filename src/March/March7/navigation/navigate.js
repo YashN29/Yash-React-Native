@@ -34,7 +34,7 @@ const Navigate = () => {
           name="Dashboard"
           component={Dashboard}
           options={{headerShown: true,
-          headerBackTitleVisible:false}}
+          headerBackVisible:false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

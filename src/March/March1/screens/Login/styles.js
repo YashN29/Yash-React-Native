@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   middelView:{
+    alignSelf:'center',
     flexDirection:'column',
     alignItems:'flex-start',
     marginTop:50,

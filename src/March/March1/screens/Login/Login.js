@@ -6,8 +6,9 @@ import {
   Alert,
   ScrollView,
   ToastAndroid,
+  ActivityIndicator,
 } from 'react-native';
-import React, {useEffect,useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import {
   GoogleSignin,
@@ -17,32 +18,48 @@ import {
 import {LoginManager, AccessToken} from 'react-native-fbsdk-next';
 import auth from '@react-native-firebase/auth';
 
-
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailValidError, setEmailValidError] = useState('');
+
+  let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+  const handleValidEmail = val => {
+    if (val.length === 0) {
+      setEmailValidError('email address must be enter!');
+    } else if (reg.test(val) === false) {
+      setEmailValidError('enter valid email!');
+    } else if (reg.test(val) === true) {
+      setEmailValidError('');
+    }
+  };
 
   const loginUser = () => {
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(()=>{
-        console.log('Signed in successfully!');
-        ToastAndroid.show('Login Successfully!',ToastAndroid.SHORT);
-        navigation.navigate('Profile')
-        setEmail('')
-        setPassword('')
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-        }
-    
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-        ToastAndroid.show('Invalid credentials!',ToastAndroid.SHORT);
-        console.log(error);
-      });
+    if (email === '' || password === '') {
+      ToastAndroid.show('Please enter some value!', ToastAndroid.SHORT);
+    } else {
+      auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          console.log('Signed in successfully!');
+          ToastAndroid.show('Login Successfully!', ToastAndroid.SHORT);
+          navigation.navigate('Profile');
+          setEmail('');
+          setPassword('');
+        })
+        .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            console.log('That email address is already in use!');
+          }
+
+          if (error.code === 'auth/invalid-email') {
+            console.log('That email address is invalid!');
+          }
+          ToastAndroid.show('Invalid credentials!', ToastAndroid.SHORT);
+          console.log(error);
+        });
+    }
   };
 
   const registerUser = () => {
@@ -107,20 +124,27 @@ const Login = ({navigation}) => {
           <Text style={styles.TextName}>EMAIL</Text>
           <TextInput
             value={email}
-            onChangeText={actualEmail =>{
-              setEmail(actualEmail)
+            onChangeText={actualEmail => {
+              setEmail(actualEmail);
+              handleValidEmail(actualEmail);
             }}
             style={styles.Input_email}
             placeholder="E-mail"
             placeholderTextColor="#B9C5D1"
             selectionColor="#545974"
           />
+          {emailValidError ? (
+            <Text
+              style={{color: 'red', alignSelf: 'flex-end', marginRight: 15}}>
+              {emailValidError}
+            </Text>
+          ) : null}
 
           <Text style={styles.TextEmail}>PASSWORD</Text>
           <TextInput
             value={password}
-            onChangeText={actualPassword =>{
-              setPassword(actualPassword)
+            onChangeText={actualPassword => {
+              setPassword(actualPassword);
             }}
             style={styles.Input_email}
             placeholder="Password"

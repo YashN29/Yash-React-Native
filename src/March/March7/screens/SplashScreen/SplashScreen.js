@@ -2,11 +2,19 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import LottieView from 'lottie-react-native';
+import auth from '@react-native-firebase/auth';
 
 const SplashScreen = ({navigation}) => {
 
+  const user = auth().currentUser;
+  console.log(user);
+
   setTimeout(() => {
-    navigation.navigate('Login');
+    if(!user){
+      navigation.navigate('Login');
+    }else{
+      navigation.navigate('Dashboard');
+    }
   }, 1500);
   return (
     <View style={styles.mainContainer}>
