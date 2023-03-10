@@ -90,7 +90,7 @@ const Login = ({navigation}) => {
   useEffect(() => {
     GoogleSignin.configure({
       webClientId:
-        '512466752037-ed0ivmvuc17hks36coq8tcsec1p2lk4h.apps.googleusercontent.com',
+        '512466752037-kn4ru5866psng0alob43alpoh7l6ungv.apps.googleusercontent.com',
     });
   }, []);
   const signUpwithGoogle = async () => {
