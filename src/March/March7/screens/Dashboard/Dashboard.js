@@ -13,14 +13,9 @@ import auth from '@react-native-firebase/auth';
 const Dashboard = ({navigation}) => {
   const logOut = () => {
     auth()
-      .signOut()
-      .then(() => {
-        console.log('User signed out!');
-        ToastAndroid.show('Successfully Logout!');
-      });
-      setTimeout(() => {
-        BackHandler.exitApp();
-      }, 500);
+      .signOut();
+      navigation.navigate('Login');
+      ToastAndroid.show('Successfully Logout!',ToastAndroid.SHORT);
   };
 
   useEffect(() => {

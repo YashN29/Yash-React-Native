@@ -1,6 +1,7 @@
 import {View, Text, TextInput, TouchableOpacity, ToastAndroid} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
+import OTPTextView from 'react-native-otp-textinput';
 import LottieView from 'lottie-react-native';
 import auth from '@react-native-firebase/auth';
 
@@ -24,8 +25,12 @@ const Login = ({navigation}) => {
     try {
       await confirm.confirm(code);
       console.log('Success!');
+      setCode('');
+      setConfirm('');
+      setphonenumber('');
       navigation.navigate('Dashboard');
     } catch (error) {
+      ToastAndroid.show('Invalid OTP!',ToastAndroid.SHORT);
       console.log('Invalid code.');
     }
   };
@@ -86,7 +91,26 @@ const Login = ({navigation}) => {
         </Text>
       </View>
       <View style={styles.middelView}>
+
         <Text style={styles.TextOtp}>OTP</Text>
+
+        {/* <OTPTextView 
+        value={code}
+        containerStyle={{
+          alignSelf:'center',
+        }}
+        placeholder='*'
+        placeholderTextColor="#B9C5D1"
+        inputCount={6}
+        tintColor="#00E0C6"
+        textInputStyle={{
+          color:'#F7F7FA',
+        }}
+        onChangeText={actualOTP=>{
+          setCode(actualOTP);
+        }}
+        >
+        </OTPTextView> */}
         <TextInput
           value={code}
           style={styles.inputOtp}

@@ -2,7 +2,6 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import SplashScreen from '../screens/SplashScreen/SplashScreen';
 import Login from '../screens/Login/Login';
-import Authenticate from '../screens/Authenticate/Authenticate';
 import Dashboard from '../screens/Dashboard/Dashboard';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
@@ -21,12 +20,6 @@ const Navigate = () => {
         <Stack.Screen
           name="Login"
           component={Login}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="Authenticate"
-          component={Authenticate}
           options={{headerShown: false}}
         />
 

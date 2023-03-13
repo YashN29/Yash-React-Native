@@ -1,9 +1,11 @@
 import {View, Text, TouchableOpacity} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import styles from './styles';
 import messaging from '@react-native-firebase/messaging';
+import inAppMessaging from '@react-native-firebase/in-app-messaging';
 
 const HomeScreen = () => {
+
   useEffect(() => {
     messaging()
       .getToken()
@@ -12,6 +14,12 @@ const HomeScreen = () => {
       });
   }, []);
 
+  bootstrap();
+
+  async function bootstrap() {
+    await inAppMessaging().setMessagesDisplaySuppressed(true);
+  }
+  
   return (
     <View style={styles.mainContainer}>
       <View style={styles.btn_view}>

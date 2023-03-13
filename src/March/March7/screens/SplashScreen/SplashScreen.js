@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, ToastAndroid } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import LottieView from 'lottie-react-native';
@@ -14,6 +14,7 @@ const SplashScreen = ({navigation}) => {
       navigation.navigate('Login');
     }else{
       navigation.navigate('Dashboard');
+      ToastAndroid.show('Welcome'+" "+user.phoneNumber.toString(),ToastAndroid.SHORT);
     }
   }, 1500);
   return (
