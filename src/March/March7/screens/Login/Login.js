@@ -23,15 +23,17 @@ const Login = ({navigation}) => {
 
   const confirmCode = async () => {
     try {
-      await confirm.confirm(code);
+      await confirm.confirm(code.state.otpText.join(""));
       console.log('Success!');
+      //console.log(typeof code)
       setCode('');
       setConfirm('');
       setphonenumber('');
       navigation.navigate('Dashboard');
     } catch (error) {
       ToastAndroid.show('Invalid OTP!',ToastAndroid.SHORT);
-      console.log('Invalid code.');
+      console.log(code.state.otpText.join(""));
+      //console.log('Invalid code.');
     }
   };
 
@@ -94,7 +96,7 @@ const Login = ({navigation}) => {
 
         <Text style={styles.TextOtp}>OTP</Text>
 
-        {/* <OTPTextView 
+        <OTPTextView 
         value={code}
         containerStyle={{
           alignSelf:'center',
@@ -106,12 +108,12 @@ const Login = ({navigation}) => {
         textInputStyle={{
           color:'#F7F7FA',
         }}
-        onChangeText={actualOTP=>{
-          setCode(actualOTP);
+        ref={actualOtp => {
+          setCode(actualOtp);
         }}
         >
-        </OTPTextView> */}
-        <TextInput
+        </OTPTextView>
+        {/* <TextInput
           value={code}
           style={styles.inputOtp}
           placeholder="Enter the 6-digit OTP"
@@ -122,7 +124,7 @@ const Login = ({navigation}) => {
             setCode(actualOtp);
           }}
           maxLength={6}
-        />
+        /> */}
       </View>
       <View style={styles.btn_view}>
         <TouchableOpacity style={styles.button} onPress={() => confirmCode()}>

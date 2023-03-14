@@ -100,6 +100,7 @@ const Login = ({navigation}) => {
       console.log(idToken);
       navigation.navigate('Dashboard');
     } catch (error) {
+      console.log(JSON.parse(JSON.stringify(error)));
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
       } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -108,7 +109,7 @@ const Login = ({navigation}) => {
         // play services not available or outdated
       } else {
         Alert.alert(error.toString());
-        console.log('===>', error);
+        console.log('===>', error.code);
       }
     }
   };

@@ -265,7 +265,6 @@ dependencies {
 
 
     implementation project(':react-native-fs')
-    //implementation project(path: ":@react-native-firebase_app")
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
     
 
