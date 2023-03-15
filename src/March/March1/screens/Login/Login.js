@@ -90,14 +90,15 @@ const Login = ({navigation}) => {
   useEffect(() => {
     GoogleSignin.configure({
       webClientId:
-        '512466752037-kn4ru5866psng0alob43alpoh7l6ungv.apps.googleusercontent.com',
+        '',
     });
-  }, []);
+  },[]);
+
   const signUpwithGoogle = async () => {
     try {
       await GoogleSignin.hasPlayServices();
-      const {idToken} = await GoogleSignin.signIn();
-      console.log(idToken);
+      const userInfo = await GoogleSignin.signIn();
+      console.log(userInfo);
       navigation.navigate('Dashboard');
     } catch (error) {
       console.log(JSON.parse(JSON.stringify(error)));
@@ -113,7 +114,6 @@ const Login = ({navigation}) => {
       }
     }
   };
-
   return (
     <View style={styles.mainConatiner}>
       <ScrollView>
