@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import Navigation from './navigation'
+import MainScreen from './screens/Mainscreen/MainScreen';
 
 const Index = () => {
   return (
     <View style={{flex:1}}>
-      <Navigation/>
+      <MainScreen/>
     </View>
   )
 }
