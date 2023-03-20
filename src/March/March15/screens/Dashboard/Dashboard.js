@@ -45,6 +45,14 @@ const Dashboard = ({navigation}) => {
       });
   };
 
+  const renderLoader = ()=>{
+    return(
+      <View style={styles.loaderStyle}>
+        <ActivityIndicator size="large" color="#000000"/>
+      </View>
+    )
+  }
+
   const loadMoreItem = () => {
     setcurrentPage(currentPage + 1);
     console, loadMoreItem('loading...');
@@ -91,6 +99,8 @@ const Dashboard = ({navigation}) => {
           ListFooterComponent={Compo}
           onEndReached={loadMoreItem}
           onEndReachedThreshold={0}
+          showsVerticalScrollIndicator={true}
+          ListFooterComponent={renderLoader}
         />
       )}
     </View>
