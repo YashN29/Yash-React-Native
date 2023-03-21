@@ -54,10 +54,23 @@ const styles = StyleSheet.create({
     borderColor:'#A7D5E5',
     borderWidth:2
   },
-  input: {
+  inputIOS: {
     marginVertical:10,
     borderRadius: 10,
-    width:'80%',
+    flex:1,
+    marginHorizontal:10,
+    height:'90%',
+    backgroundColor:'#EDEFFE',
+    elevation:6,
+    paddingHorizontal: 18,
+    borderWidth:2,
+    borderColor:'#373B61'
+  },
+  inputAndroid: {
+    marginVertical:10,
+    borderRadius: 10,
+    flex:1,
+    marginHorizontal:10,
     backgroundColor:'#EDEFFE',
     elevation:6,
     paddingHorizontal: 18,

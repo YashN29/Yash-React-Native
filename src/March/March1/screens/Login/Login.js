@@ -7,6 +7,7 @@ import {
   ScrollView,
   ToastAndroid,
   ActivityIndicator,
+  SafeAreaView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
@@ -115,7 +116,7 @@ const Login = ({navigation}) => {
     }
   };
   return (
-    <View style={styles.mainConatiner}>
+    <SafeAreaView style={styles.mainConatiner}>
       <ScrollView>
         <View style={styles.topView}>
           <Text style={styles.loginText}>Login</Text>
@@ -191,7 +192,7 @@ const Login = ({navigation}) => {
           <Text style={styles.text_login}>REGISTER</Text>
         </TouchableOpacity>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

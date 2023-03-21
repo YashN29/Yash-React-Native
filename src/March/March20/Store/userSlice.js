@@ -11,7 +11,7 @@ export const fetchUsers = createAsyncThunk('user/fetchUsers', async()=>{
 
     try {
         const {data} = await axios
-        .get('https://www.freetogame.com/api/games/');
+        .get('http://www.freetogame.com/api/games/');
         return data;
     } catch (error) {
         console.log(error);

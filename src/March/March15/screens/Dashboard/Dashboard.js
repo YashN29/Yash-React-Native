@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   ActivityIndicator,
+  SafeAreaView,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import styles from './styles';
@@ -84,13 +85,14 @@ const Dashboard = ({navigation}) => {
   };
 
   return (
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
       <Text style={styles.text}>Doctor's list</Text>
       {loading ? (
         <LottieView
+         autoSize
+         style={{alignSelf:'center'}}
           source={require('../../../../../icons/loading.json')}
           autoPlay
-          loop
         />
       ) : (
         <FlatList
@@ -103,7 +105,7 @@ const Dashboard = ({navigation}) => {
           ListFooterComponent={renderLoader}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -9,6 +9,9 @@ import {
   TextInput,
   ToastAndroid,
   Linking,
+  SafeAreaView,
+  Platform,
+  ActionSheetIOS,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
@@ -21,6 +24,7 @@ const MainScreen = () => {
   const [searchBy, setSearchBy] = useState('');
   const user = useSelector(state => state.userSlice);
   const dispatch = useDispatch();
+  Icon.loadFont();
   useEffect(() => {
     dispatch(fetchUsers());
   }, []);
@@ -32,28 +36,47 @@ const MainScreen = () => {
     );
   };
   const openModal = () => {
-    Alert.alert('Search by filter', 'select the option for filter', [
-      {
-        text: 'Seach by publisher',
-        onPress: () => {
-          setSearchBy('publisher'),
-            ToastAndroid.show('Search by publisher!', ToastAndroid.SHORT);
+    if (Platform.OS == 'ios') {
+      ActionSheetIOS.showActionSheetWithOptions(
+        {
+          options: ['Cancel', 'Search by Title', 'Search by Publisher'],
+          cancelButtonIndex: 0,
+          userInterfaceStyle: 'light',
         },
-      },
-      {
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      {
-        text: 'Search by name',
-        onPress: () => {
-          setSearchBy('name'),
-            ToastAndroid.show('Search by Name!', ToastAndroid.SHORT);
+        buttonIndex => {
+          if (buttonIndex === 0) {
+          } else if (buttonIndex === 1) {
+            setSearchBy('title');
+          } else if (buttonIndex === 2) {
+            setSearchBy('publisher');
+          }
         },
-      },
-    ]);
+      );
+    } else {
+      Alert.alert('Search by filter', 'select the option for filter', [
+        {
+          text: 'Seach by publisher',
+          onPress: () => {
+            setSearchBy('publisher'),
+              ToastAndroid.show('Search by publisher!', ToastAndroid.SHORT);
+          },
+        },
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'Search by name',
+          onPress: () => {
+            setSearchBy('name'),
+              ToastAndroid.show('Search by Name!', ToastAndroid.SHORT);
+          },
+        },
+      ]);
+    }
   };
+
   const component = ({item}) => {
     if (search === '') {
       return (
@@ -92,19 +115,19 @@ const MainScreen = () => {
     }
   };
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.searchView}>
+    <SafeAreaView style={styles.mainContainer}>
+      <SafeAreaView style={styles.searchView}>
         <TextInput
-          style={styles.input}
+          style={Platform.OS == 'ios' ? styles.inputIOS : styles.inputAndroid}
           placeholder="Search here.."
           placeholderTextColor="#777"
           value={search}
           onChangeText={actualsearch => setsearch(actualsearch)}
         />
         <TouchableOpacity onPress={() => openModal()}>
-          <Icon name="funnel-outline" color="#373B61" size={30} />
+          <Icon name="funnel-outline" color="#373B61" size={35} />
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
       <FlatList
         data={user.user}
         renderItem={component}
@@ -113,7 +136,7 @@ const MainScreen = () => {
         showsVerticalScrollIndicator={true}
         onEndReached={() => setloading(false)}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

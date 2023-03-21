@@ -1,4 +1,4 @@
-import {View, Text, TextInput, TouchableOpacity, ToastAndroid} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, ToastAndroid, SafeAreaView} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
 import OTPTextView from 'react-native-otp-textinput';
@@ -39,7 +39,7 @@ const Login = ({navigation}) => {
 
   if (!confirm) {
     return (
-      <View style={styles.mainConatiner}>
+      <SafeAreaView style={styles.mainConatiner}>
         <LottieView
           style={{width: 200, height: 200, alignSelf: 'center'}}
           source={require('../../../../../icons/otp.json')}
@@ -73,12 +73,12 @@ const Login = ({navigation}) => {
             <Text style={styles.text_inside_btn}>Send OTP</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 
   return (
-    <View style={styles.mainConatiner}>
+    <SafeAreaView style={styles.mainConatiner}>
       <LottieView
         style={{width: 200, height: 200, alignSelf: 'center'}}
         source={require('../../../../../icons/otp.json')}
@@ -131,7 +131,7 @@ const Login = ({navigation}) => {
           <Text style={styles.text_inside_btn}>Verify OTP</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
