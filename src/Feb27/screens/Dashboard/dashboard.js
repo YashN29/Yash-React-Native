@@ -1,4 +1,4 @@
-import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity, Image, SafeAreaView} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
@@ -48,7 +48,7 @@ const Dashboard = ({navigation}) => {
   };
 
   return (
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
       <View style={styles.topView}>
         <Text style={styles.topText}>Registered Users</Text>
       </View>
@@ -59,7 +59,7 @@ const Dashboard = ({navigation}) => {
           <Text style={styles.text_inside_btn}>+</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

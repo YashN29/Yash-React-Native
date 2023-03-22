@@ -90,17 +90,22 @@ const Login = ({navigation}) => {
 
   useEffect(() => {
     GoogleSignin.configure({
-      webClientId:
-        '',
+      webClientId: '',
     });
-  },[]);
+  }, []);
 
   const signUpwithGoogle = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      console.log(userInfo);
-      navigation.navigate('Dashboard');
+      console.log("User Info ===> ",userInfo);
+      //navigation.navigate('Profile', {userInfo: userInfo});
+      Alert.alert(userInfo.user.email);
+      const googleCredential = auth.GoogleAuthProvider.credential(
+        userInfo.idToken,
+      );
+
+      return auth().signInWithCredential(googleCredential);
     } catch (error) {
       console.log(JSON.parse(JSON.stringify(error)));
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -111,7 +116,6 @@ const Login = ({navigation}) => {
         // play services not available or outdated
       } else {
         Alert.alert(error.toString());
-        console.log('===>', error.code);
       }
     }
   };

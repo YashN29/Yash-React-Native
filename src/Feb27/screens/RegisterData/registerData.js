@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   ToastAndroid,
+  SafeAreaView,
 } from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
@@ -60,7 +61,7 @@ const RegisterData = ({navigation}) => {
   };
 
   return (
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
       <LottieView
         style={{width: 200, alignSelf: 'center'}}
         source={require('../../../../icons/registration.json')}
@@ -120,7 +121,7 @@ const RegisterData = ({navigation}) => {
           <Text style={styles.text_inside_btn}>Register</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

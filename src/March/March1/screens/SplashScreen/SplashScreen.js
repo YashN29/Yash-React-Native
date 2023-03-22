@@ -13,7 +13,7 @@ const SplashScreen = ({navigation}) => {
     if(!user){
       navigation.navigate('Login');
     }else{
-      navigation.navigate('Profile');
+      navigation.navigate('Profile',{user : user});
     }
   }, 1500);
 

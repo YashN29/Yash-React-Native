@@ -11,6 +11,7 @@ import {
   BackHandler,
   Alert,
   ActivityIndicator,
+  SafeAreaView,
 } from 'react-native';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -94,7 +95,7 @@ const Register = ({navigation}) => {
   // }, []);
 
   return (
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
           <TouchableOpacity onPress={null}>
@@ -175,7 +176,7 @@ const Register = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

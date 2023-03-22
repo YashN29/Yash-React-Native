@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
+  SafeAreaView,
 } from 'react-native';
 import React,{useState} from 'react';
 import styles from './styles';
@@ -48,7 +49,7 @@ const Register = ({navigation}) => {
   };
 
   return (
-    <View style={styles.mainConatiner}>
+    <SafeAreaView style={styles.mainConatiner}>
       <ScrollView>
         <View style={styles.topView}>
           <Text style={styles.loginText}>Register</Text>
@@ -95,7 +96,7 @@ const Register = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
