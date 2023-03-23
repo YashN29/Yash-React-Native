@@ -1,46 +1,102 @@
-import {View, Text, SafeAreaView, TouchableOpacity} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import React, {useState} from 'react';
 import styles from './styles';
 
 const MainScreen = () => {
-    const [Signal1, setSignal1] = useState(true);
-    const [Signal2, setSignal2] = useState(false);
-    const [Signal3, setSignal3] = useState(false);
-    const [Signal4, setSignal4] = useState(false);
+  const [color, setColor] = useState({
+    signal1: '',
+    signal2: '',
+    signal3: '',
+    signal4: '',
+  });
 
-  useEffect(() => {
-    setTimeout(() => {
-      console.log('signal1');
-      setSignal1(true);
-      setSignal2(false);
-      setSignal3(false);
-      setSignal4(false);
-    }, 5000);
+  const [second, setSecond] = useState('');
 
-    setTimeout(() => {
-      console.log('signal2');
-      setSignal1(false);
-      setSignal2(true);
-      setSignal3(false);
-      setSignal4(false);
-    }, 5000);
+  const [visible, setvisible] = useState(true);
 
-    setTimeout(() => {
-      console.log('signal3');
-      setSignal1(false);
-      setSignal2(false);
-      setSignal3(true);
-      setSignal4(false);
-    }, 5000);
+  const start = () => {
+    if (second > 0) {
+      changeSignal1(), console.log(second);
+    } else {
+     null;
+    }
+  };
 
+  const changeSignal1 = () => {
+    setColor({
+      signal1: 'green',
+      signal2: '',
+      signal3: '',
+      signal4: '',
+    });
     setTimeout(() => {
-      console.log('signal4');
-      setSignal1(false);
-      setSignal2(false);
-      setSignal3(false);
-      setSignal4(true);
-    }, 5000);
-  },[]);
+      changeSignal2();
+    }, second * 1000);
+  };
+
+  const changeSignal2 = () => {
+    setColor({
+      signal1: '',
+      signal2: 'green',
+      signal3: '',
+      signal4: '',
+    });
+    setTimeout(() => {
+      changeSignal3();
+    }, second * 1000);
+  };
+
+  const changeSignal3 = () => {
+    setColor({
+      signal1: '',
+      signal2: '',
+      signal3: 'green',
+      signal4: '',
+    });
+    setTimeout(() => {
+      changeSignal4();
+    }, second * 1000);
+  };
+
+  const changeSignal4 = () => {
+    setColor({
+      signal1: '',
+      signal2: '',
+      signal3: '',
+      signal4: 'green',
+    });
+    setTimeout(() => {
+      changeSignal1();
+    }, second * 1000);
+  };
+
+  const onClick = () => {
+    start();
+    setvisible(true);
+  };
+
+  const pauseSec = () => {
+    setSecond('0');
+    setvisible(false);
+  };
+  if (color.signal1 == 'green') {
+    console.log('signal1', second);
+  }
+  if (color.signal2 == 'green') {
+    console.log('signal2', second);
+  }
+  if (color.signal3 == 'green') {
+    console.log('signal3', second);
+  }
+  if (color.signal4 == 'green') {
+    console.log('signal4', second);
+  }
 
   return (
     <SafeAreaView style={styles.mainContainer}>
@@ -48,14 +104,14 @@ const MainScreen = () => {
         <Text
           style={[
             styles.textView1,
-            {backgroundColor: Signal1 ? 'green' : 'red'},
+            {backgroundColor: color.signal1 == 'green' ? 'green' : 'red'},
           ]}>
           1
         </Text>
         <Text
           style={[
             styles.textView2,
-            {backgroundColor: Signal2 ? 'green' : 'red'},
+            {backgroundColor: color.signal2 == 'green' ? 'green' : 'red'},
           ]}>
           2
         </Text>
@@ -64,18 +120,45 @@ const MainScreen = () => {
         <Text
           style={[
             styles.textView4,
-            {backgroundColor: Signal4 ? 'green' : 'red'},
+            {backgroundColor: color.signal4 == 'green' ? 'green' : 'red'},
           ]}>
           4
         </Text>
         <Text
           style={[
             styles.textView3,
-            {backgroundColor: Signal3 ? 'green' : 'red'},
+            {backgroundColor: color.signal3 == 'green' ? 'green' : 'red'},
           ]}>
           3
         </Text>
       </View>
+
+      {visible ? (
+        <TouchableOpacity onPress={pauseSec}>
+          <Text style={{alignSelf: 'center', textDecorationLine: 'underline'}}>
+            Click to set seconds
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <>
+          <TextInput
+            style={Platform.OS == 'ios' ? styles.inputIOS : styles.inputAndroid}
+            value={second}
+            onChangeText={t => setSecond(t)}
+            keyboardType="number-pad"
+          />
+
+          <View style={styles.btn_view}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+              onClick();
+              }}>
+              <Text style={styles.text_inside_btn}>Set Seconds</Text>
+            </TouchableOpacity>
+          </View>
+        </>
+      )}
     </SafeAreaView>
   );
 };
