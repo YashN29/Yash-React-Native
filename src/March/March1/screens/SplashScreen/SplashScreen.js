@@ -20,6 +20,7 @@ const SplashScreen = ({navigation}) => {
   return (
     <View style={styles.mainContainer}>
       <LottieView source={require('../../../../../icons/splashIcon.json')} autoPlay loop/>
+
     </View>
   )
 }

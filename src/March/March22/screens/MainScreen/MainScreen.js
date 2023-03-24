@@ -4,9 +4,11 @@ import {
   SafeAreaView,
   TextInput,
   TouchableOpacity,
+  Button,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import styles from './styles';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const MainScreen = () => {
   const [color, setColor] = useState({
@@ -16,15 +18,22 @@ const MainScreen = () => {
     signal4: '',
   });
 
-  const [second, setSecond] = useState('');
+  Icon.loadFont();
+
+  const bool = useRef(true);
+
+  const [second, setSecond] = useState('1');
 
   const [visible, setvisible] = useState(true);
 
   const start = () => {
-    if (second > 0) {
-      changeSignal1(), console.log(second);
+    if (bool.current) {
+      console.log('Stopped!');
     } else {
-     null;
+      while (second > 0) {
+        changeSignal1(), console.log(second);
+        break;
+      }
     }
   };
 
@@ -36,7 +45,7 @@ const MainScreen = () => {
       signal4: '',
     });
     setTimeout(() => {
-      changeSignal2();
+      changeSignal4();
     }, second * 1000);
   };
 
@@ -48,7 +57,7 @@ const MainScreen = () => {
       signal4: '',
     });
     setTimeout(() => {
-      changeSignal3();
+      changeSignal1();
     }, second * 1000);
   };
 
@@ -60,7 +69,7 @@ const MainScreen = () => {
       signal4: '',
     });
     setTimeout(() => {
-      changeSignal4();
+      changeSignal2();
     }, second * 1000);
   };
 
@@ -72,17 +81,19 @@ const MainScreen = () => {
       signal4: 'green',
     });
     setTimeout(() => {
-      changeSignal1();
+      changeSignal3();
     }, second * 1000);
   };
 
   const onClick = () => {
+    bool.current = false;
     start();
     setvisible(true);
   };
 
   const pauseSec = () => {
     setSecond('0');
+    bool.current = true;
     setvisible(false);
   };
   if (color.signal1 == 'green') {
@@ -152,8 +163,9 @@ const MainScreen = () => {
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
-              onClick();
+                onClick();
               }}>
+              <Icon size={30} name="time" />
               <Text style={styles.text_inside_btn}>Set Seconds</Text>
             </TouchableOpacity>
           </View>

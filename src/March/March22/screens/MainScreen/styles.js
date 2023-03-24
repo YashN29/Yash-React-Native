@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   textView1: {
+    elevation: 6,
     width: 80,
     height: 80,
     textAlign: 'center',
@@ -58,23 +59,23 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   inputAndroid: {
-    marginVertical:10,
+    marginVertical: 10,
     borderRadius: 10,
-    marginHorizontal:10,
+    marginHorizontal: 10,
     paddingHorizontal: 18,
-    borderWidth:2,
-    borderColor:'#373B61'
+    borderWidth: 2,
+    borderColor: '#373B61',
   },
   inputIOS: {
-    marginVertical:10,
+    marginVertical: 10,
     borderRadius: 10,
     height: 50,
-    marginHorizontal:10,
-    backgroundColor:'#EDEFFE',
-    elevation:6,
+    marginHorizontal: 10,
+    backgroundColor: '#EDEFFE',
+    elevation: 6,
     paddingHorizontal: 18,
-    borderWidth:2,
-    borderColor:'#373B61'
+    borderWidth: 2,
+    borderColor: '#373B61',
   },
   btn_view: {
     width: '60%',
@@ -102,21 +103,24 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 50,
     marginHorizontal: 15,
-    flexDirection: 'column',
-  },
-  button: {
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#00E0C6',
     height: 50,
     borderRadius: 30,
+    flexDirection: 'row',
+  },
+  button: {
+    alignItems: 'center',
+    flexDirection: 'row',
     elevation: 6,
     padding: 10,
+    justifyContent: 'space-around',
   },
   text_inside_btn: {
+    width: '90%',
+    textAlign: 'center',
     color: '#252525',
-    alignSelf: 'center',
     fontWeight: 'bold',
+    fontSize: 15,
   },
 });
 export default styles;
