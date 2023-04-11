@@ -1,14 +1,13 @@
+import React, {useRef, useState} from 'react';
 import {
-  View,
-  Text,
   SafeAreaView,
+  Text,
   TextInput,
   TouchableOpacity,
-  Button,
+  View,
 } from 'react-native';
-import React, {useState, useRef} from 'react';
-import styles from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
+import styles from './styles';
 
 const MainScreen = () => {
   const [color, setColor] = useState({
