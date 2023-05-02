@@ -1,22 +1,19 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import database from '@react-native-firebase/database';
 import React, {useEffect, useState} from 'react';
 import {
-  View,
+  Alert,
+  BackHandler,
+  Image,
+  SafeAreaView,
+  ScrollView,
   Text,
   TextInput,
-  Image,
-  TouchableOpacity,
-  ScrollView,
   ToastAndroid,
-  BackHandler,
-  Alert,
-  ActivityIndicator,
-  SafeAreaView,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import styles from './styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useDispatch, useSelector} from 'react-redux';
-import {register} from '../../Store/action';
-import database from '@react-native-firebase/database';
 
 const Login = ({navigation}) => {
   const [exitApp, setexitApp] = useState(0);
@@ -28,20 +25,18 @@ const Login = ({navigation}) => {
 
   useEffect(() => {
     getData();
-}, [])
-const getData = ()=>{
+  }, []);
+  const getData = () => {
     try {
-       AsyncStorage.getItem('Email')
-        .then(value =>{
-            if(value != null){
-                navigation.navigate('Profile')
-            }
-        })
+      AsyncStorage.getItem('Email').then(value => {
+        if (value != null) {
+          navigation.navigate('Profile');
+        }
+      });
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-}
-
+  };
 
   const handelLogin = () => {
     if (email == '' || password == '') {

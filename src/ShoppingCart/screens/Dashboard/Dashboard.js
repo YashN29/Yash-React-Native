@@ -15,10 +15,9 @@ import {styles} from './styles';
 
 const Dashboard = ({navigation}) => {
   const myProducts = useSelector(state => state.product);
-  console.log(myProducts);
 
   const cartProducts = useSelector(state => state.cart);
-  console.log('CART_PRODUCTS', cartProducts);
+  console.log('CART_PRODUCTS===>', cartProducts);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -35,9 +34,6 @@ const Dashboard = ({navigation}) => {
       total += item.qty * item.price;
     });
     return total;
-  };
-  const viewCart = () => {
-    navigation.navigate('CartScreen');
   };
 
   const compo = ({item}) => {
@@ -123,7 +119,7 @@ const Dashboard = ({navigation}) => {
           </View>
           <TouchableOpacity
             style={styles.viewCartButton}
-            onPress={() => viewCart()}>
+            onPress={() => navigation.navigate('CartScreen')}>
             <Text style={{fontWeight: '600', color: 'green'}}>View Cart</Text>
           </TouchableOpacity>
         </View>
