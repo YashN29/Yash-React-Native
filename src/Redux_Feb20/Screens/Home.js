@@ -11,8 +11,8 @@ const Home =()=>{
     const count1 = useSelector((store) => store.count1.count1);
 
     const handleIncrement =()=>{
-        dispatch(increment()),
-        dispatch(decrement());
+        dispatch(increment());
+        //dispatch(decrement());
     }
     
     const handleReset =()=>{

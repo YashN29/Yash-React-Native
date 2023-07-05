@@ -1,10 +1,12 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image, PermissionsAndroid, ActivityIndicator, Alert, Share } from 'react-native'
 import React,{useState} from 'react'
-import RNFS, { downloadFile } from 'react-native-fs';
 import SharePanel from 'react-native-share';
-import DocumentPicker from 'react-native-document-picker';
-import RNFetchBlob from 'rn-fetch-blob';
-import ReactNativeBlobUtil from 'react-native-blob-util';
+
+// import RNFetchBlob from 'rn-fetch-blob';
+
+// import RNFetchBlob from 'react-native-fetch-blob';
+import { writeFile } from 'react-native-fs';
+import { base64StringToBlob } from 'react-native-blob-util';
 
 
 
@@ -44,53 +46,75 @@ const CardButton = () => {
         }
     };
 
+   
+
+const downloadImage = async (base64Data, fileName) => {
+  try {
+    const blobData = await base64StringToBlob(base64Data, 'image/png'); // Specify the appropriate image format if different
+    const filePath = `${RNFetchBlob.fs.dirs.DocumentDir}/${fileName}`;
+
+    await writeFile(filePath, blobData, 'uri');
+
+    console.log('Image saved successfully:', filePath);
+  } catch (error) {
+    console.error('Error while downloading image:', error);
+  }
+};
+
+const base64ImageData = '...'; // Replace with your base64 image data
+const imageName = 'example.png'; // Desired image name
+
+downloadImage(base64ImageData, imageName);
+
       
-    const downloadBrochure = async () => {
-        setLoading(true);
-        const filename = 'document.pdf';
-        const url = `https://www.kwsp.gov.my/documents/20126/131635/Akaun_Emas_BM_13012017.pdf`;
+    // const downloadBrochure = async () => {
+    //     setLoading(true);
+    //     const filename = 'document.pdf';
+    //     const url = `https://www.kwsp.gov.my/documents/20126/131635/Akaun_Emas_BM_13012017.pdf`;
 
-        const { config, fs } = ReactNativeBlobUtil;
+    //     const { config, fs } = ReactNativeBlobUtil;
 
-        let cacheDir = getDownloadFolderPath();
-        const imagePath = `${cacheDir}/${filename}`;
+    //     let cacheDir = getDownloadFolderPath();
+    //     const imagePath = `${cacheDir}/${filename}`;
 
-        try {
-            // Download the file and save it to the cache directory
-            const configOptions = Platform.select({
-                ios: {
-                    fileCache: true,
-                    path: imagePath,
-                    appendExt: filename.split('.').pop()
-                },
-                android: {
-                    fileCache: true,
-                    path: imagePath,
-                    appendExt: filename.split('.').pop(),
-                    addAndroidDownloads: {
-                        // Related to the Android only
-                        useDownloadManager: true,
-                        notification: true,
-                        path: imagePath,
-                        description: 'File'
-                    }
-                }
-            });
-            const response = await ReactNativeBlobUtil.config(configOptions)
-            .fetch('GET', url)
-            .then((res) => {
-                return res;
-            });
-        setLoading(false);
-        const path = response.path();
-        shareBrochure(path);
-        } catch (error) {
-            setLoading(false);
-            Alert.alert('Some Error occured!');
-            console.error(error);
-            return null;
-        }
-    };
+    //     try {
+    //         // Download the file and save it to the cache directory
+    //         const configOptions = Platform.select({
+    //             ios: {
+    //                 fileCache: true,
+    //                 path: imagePath,
+    //                 appendExt: filename.split('.').pop()
+    //             },
+    //             android: {
+    //                 fileCache: true,
+    //                 path: imagePath,
+    //                 appendExt: filename.split('.').pop(),
+    //                 addAndroidDownloads: {
+    //                     // Related to the Android only
+    //                     useDownloadManager: true,
+    //                     notification: true,
+    //                     path: imagePath,
+    //                     description: 'File'
+    //                 }
+    //             }
+    //         });
+    //         const response = await ReactNativeBlobUtil.config(configOptions)
+    //         .fetch('GET', url)
+    //         .then((res) => {
+    //             return res;
+    //         });
+    //     setLoading(false);
+    //     const path = response.path();
+    //     shareBrochure(path);
+    //     } catch (error) {
+    //         setLoading(false);
+    //         Alert.alert('Some Error occured!');
+    //         console.error(error);
+    //         return null;
+    //     }
+    // };
+
+
 
     
 

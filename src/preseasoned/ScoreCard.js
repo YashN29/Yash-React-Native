@@ -52,7 +52,7 @@ const playerCard = () => {
 
   return (
     <>
-        <FlatList style={{marginHorizontal:15}} renderItem={renderCompo} data={[1,1,1,1,1,1]}/> 
+        <FlatList showsVerticalScrollIndicator={false} style={{marginHorizontal:15}} renderItem={renderCompo} data={[1,,1,1,1,1]}/> 
     </>
   )
 }
